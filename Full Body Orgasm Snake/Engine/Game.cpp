@@ -44,5 +44,5 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	brd.DrawCell(snake.loc);
+	snake.Draw(brd);
 }

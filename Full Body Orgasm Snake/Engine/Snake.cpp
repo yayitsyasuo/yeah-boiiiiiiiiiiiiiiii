@@ -6,3 +6,8 @@ Snake::Snake(const Location & in)
 {
 }
 
+void Snake::Draw(Board & brd) const
+{
+	brd.DrawCell();
+}
+
