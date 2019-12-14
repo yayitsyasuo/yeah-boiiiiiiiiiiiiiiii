@@ -240,6 +240,13 @@ Graphics::Graphics( HWNDKey& key )
 		_aligned_malloc( sizeof( Color ) * Graphics::ScreenWidth * Graphics::ScreenHeight,16u ) );
 }
 
+void Graphics::DrawCell(Location & loc, Color c, int dimension)
+{
+	DrawRectDim(loc.x * dimension - dimension,
+		loc.y * dimension - dimension,
+		dimension, dimension, c);
+}
+
 Graphics::~Graphics()
 {
 	// free sysbuffer memory (aligned free)
