@@ -1,5 +1,5 @@
 #pragma once
-#include "Location.h"
+//#include "Location.h" wtf bri
 #include "Board.h"
 class Snake
 {
@@ -8,6 +8,7 @@ public:
 	void Draw(Board& brd) const;
 public:
 	Location loc;
+	Color c = Colors::Yellow;
 	 // Board brd; NO! it'd be different object than the relevant one
 };
 
