@@ -23,6 +23,8 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "Location.h"
+#include "Snake.h"
 
 class Game
 {
@@ -43,4 +45,5 @@ private:
 	/********************************/
 	/*  User Variables              */
 	/********************************/
+	Snake snake;
 };
