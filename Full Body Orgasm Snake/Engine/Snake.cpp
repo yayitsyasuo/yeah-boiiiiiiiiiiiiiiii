@@ -5,3 +5,4 @@ Snake::Snake(const Location & in)
 	loc(in)
 {
 }
+

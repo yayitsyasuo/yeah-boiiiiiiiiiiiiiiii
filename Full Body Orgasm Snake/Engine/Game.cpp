@@ -25,7 +25,8 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	snake(Location (15,10))
+	snake(Location (15,10)),
+	brd(gfx)
 {
 }
 
@@ -43,4 +44,5 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	brd.DrawCell(snake.loc);
 }

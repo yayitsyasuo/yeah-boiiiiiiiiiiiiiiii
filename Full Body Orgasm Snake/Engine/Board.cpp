@@ -1,14 +1,11 @@
 #include "Board.h"
 
-
-
-Board::Board()
+Board::Board(Graphics & gfxx)
+	:
+	gfx(gfxx)
 {
 }
 
-
-Board::~Board()
+void Board::DrawCell(Location & loc)
 {
 }
-
-
