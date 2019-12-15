@@ -40,6 +40,15 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	if (wnd.kbd.KeyIsPressed(0x41)) // A
+		dloc = {-1,0};
+	if (wnd.kbd.KeyIsPressed(0x44)) // D
+		dloc = { 1,0 };
+	if (wnd.kbd.KeyIsPressed(0x57)) // W
+		dloc = { 0,-1 };
+	if (wnd.kbd.KeyIsPressed(0x53)) // S
+		dloc = { 0, 1 };
+	snake.Update(dloc);
 }
 
 void Game::ComposeFrame()

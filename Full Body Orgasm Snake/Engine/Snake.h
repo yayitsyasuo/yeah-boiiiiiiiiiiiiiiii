@@ -6,6 +6,7 @@ class Snake
 public:
 	Snake(const Location& in);
 	void Draw(Board& brd) const;
+	void Update(Location& dl);
 public:
 	Location loc;
 	Color c = Colors::Yellow;

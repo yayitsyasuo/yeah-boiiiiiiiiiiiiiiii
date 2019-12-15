@@ -48,4 +48,5 @@ private:
 	/********************************/
 	Snake snake;
 	Board brd;
+	Location dloc = {1,0};
 };
