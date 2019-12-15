@@ -25,9 +25,9 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
+	snake(Location(15, 10)),
 	brd(gfx)
 {
-	snake.SnakeHeadInit(Location(15, 10));
 }
 
 void Game::Go()

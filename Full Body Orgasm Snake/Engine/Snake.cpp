@@ -1,23 +1,33 @@
 #include "Snake.h"
 
 
-void Snake::SnakeHeadInit(const Location & in)
+Snake::Snake(const Location & in)
 {
 	seg[0].Init(in);
 }
 
-void Snake::Draw(Board & brd) const
+void Snake::Draw(Board & brd)
 {
-	brd.DrawCell(loc, c);
+	seg[0].Draw(brd, c);
 }
 
-void Snake::Update(Location & dl)
+void Snake::Update(const Location & dl)
+{
+	seg[0].Update(dl);
+}
+
+void Snake::Segment::Update(const Location & dl)
 {
 	loc+=dl;
 }
 
-void Snake::Segment::Init(Location & loc_in)
+void Snake::Segment::Init(const Location & loc_in)
 {
 	loc.x = loc_in.x;
 	loc.y = loc_in.y;
+}
+
+void Snake::Segment::Draw(Board & brd, Color c)
+{
+	brd.DrawCell(loc, c);
 }

@@ -7,14 +7,17 @@ public:
 	class Segment {
 		public:
 			void Init(const Location& loc);
+			void Draw(Board& brd, Color c);
+			void Update(const Location& dl);
+		private:
 			Location loc;
 
 
 	};
 public:
-	void SnakeHeadInit(const Location& in);
-	void Draw(Board& brd) const;
-	void Update(Location& dl);
+	Snake(const Location& in);
+	void Draw(Board& brd);
+	void Update(const Location& dl);
 public:
 	Segment seg[100];
 	Color c = Colors::Yellow;

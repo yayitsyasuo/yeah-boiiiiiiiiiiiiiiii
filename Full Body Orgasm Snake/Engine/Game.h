@@ -47,8 +47,8 @@ private:
 	/********************************/
 	/*  User Variables              */
 	/********************************/
-	Board brd;
 	Snake snake;
+	Board brd;
 	Location dloc = {1,0};
 	FrameTimer ft;
 	float dtSum = 0.0f;
