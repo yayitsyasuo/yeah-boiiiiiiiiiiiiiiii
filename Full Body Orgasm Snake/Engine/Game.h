@@ -26,6 +26,7 @@
 #include "Location.h"
 #include "Snake.h"
 #include "Board.h"
+#include "FrameTimer.h"
 
 class Game
 {
@@ -49,4 +50,7 @@ private:
 	Snake snake;
 	Board brd;
 	Location dloc = {1,0};
+	FrameTimer ft;
+	float dtSum = 0.0f;
+	static constexpr float dtSumLimit= 0.2f;
 };

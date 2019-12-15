@@ -40,6 +40,8 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	const float dt= ft.MarkT();
+
 	if (wnd.kbd.KeyIsPressed(0x41)) // A
 		dloc = {-1,0};
 	if (wnd.kbd.KeyIsPressed(0x44)) // D
@@ -48,7 +50,13 @@ void Game::UpdateModel()
 		dloc = { 0,-1 };
 	if (wnd.kbd.KeyIsPressed(0x53)) // S
 		dloc = { 0, 1 };
-	snake.Update(dloc);
+
+	dtSum += dt;
+	if (dtSum > dtSumLimit)
+	{
+		dtSum -= dtSum;
+		snake.Update(dloc);
+	}
 }
 
 void Game::ComposeFrame()
