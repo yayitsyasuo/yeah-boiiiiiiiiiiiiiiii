@@ -10,7 +10,7 @@ public:
 		Snake
 	};
 public:
-	Board(Graphics&gfx);
+	Board(Graphics& gfx);
 	void DrawCells(Color c);
 	void SpawnContent(const Location& loc);
 	Content ContentCheck(int x, int y);
@@ -19,7 +19,7 @@ public:
 	static int constexpr Rows = 560 / 20;
 	static int constexpr dimension = 20;
 	Content Board1D[Columns*Rows] = {Content::Nothing};
-	Graphics &gfx;
+	Graphics& gfx;
 
 };
 

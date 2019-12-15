@@ -1,8 +1,8 @@
 #include "Board.h"
 
-Board::Board(Graphics & gfxx)
+Board::Board(Graphics& gfx)
 	:
-	gfx(gfxx)
+	gfx(gfx)
 {
 }
 
@@ -13,7 +13,9 @@ void Board::DrawCells(Color c)
 		for (int x = 0; x <= Columns; x++)
 		{
 			if (ContentCheck(x, y) == Content::Snake)
-				gfx.DrawCell(x ,y, c, dimension); // skips it
+			{
+				gfx.DrawCell(x, y, c, dimension); // skips it
+			}
 		}
 	}
 	//gfx.DrawCell(loc, c, dimension);

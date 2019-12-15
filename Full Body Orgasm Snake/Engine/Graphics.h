@@ -62,7 +62,14 @@ public:
 	{
 		DrawRect( x0,y0,x0 + width,y0 + height,c );
 	}
-	void DrawCell(int x, int y, Color c, int dimension);
+	void DrawCell(int x, int y, Color c, int dimension)
+	{
+		int xx = x * dimension;
+		int yy = y * dimension;
+		DrawRectDim(xx - dimension,
+			yy,
+			dimension, dimension, c);
+	}
 	~Graphics();
 private:
 	Microsoft::WRL::ComPtr<IDXGISwapChain>				pSwapChain;
