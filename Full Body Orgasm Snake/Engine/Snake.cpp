@@ -1,10 +1,9 @@
 #include "Snake.h"
 
 
-Snake::Snake(const Location & in)
-	:
-	loc(in)
+void Snake::SnakeHeadInit(const Location & in)
 {
+	seg[0].Init(in);
 }
 
 void Snake::Draw(Board & brd) const
@@ -14,6 +13,11 @@ void Snake::Draw(Board & brd) const
 
 void Snake::Update(Location & dl)
 {
-	loc += dl;
+	loc+=dl;
 }
 
+void Snake::Segment::Init(Location & loc_in)
+{
+	loc.x = loc_in.x;
+	loc.y = loc_in.y;
+}

@@ -4,11 +4,19 @@
 class Snake
 {
 public:
-	Snake(const Location& in);
+	class Segment {
+		public:
+			void Init(const Location& loc);
+			Location loc;
+
+
+	};
+public:
+	void SnakeHeadInit(const Location& in);
 	void Draw(Board& brd) const;
 	void Update(Location& dl);
 public:
-	Location loc;
+	Segment seg[100];
 	Color c = Colors::Yellow;
 	 // Board brd; NO! it'd be different object than the relevant one
 };
