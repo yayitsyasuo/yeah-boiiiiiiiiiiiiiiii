@@ -6,9 +6,28 @@ Board::Board(Graphics & gfxx)
 {
 }
 
-void Board::DrawCell(Location loc, Color c)
+void Board::DrawCells(Color c)
 {
-	gfx.DrawCell(loc, c, dimension);
+	for (int y = 0; y <= Rows; y++)
+	{
+		for (int x = 0; x <= Columns; x++)
+		{
+			if (ContentCheck(x, y) == Content::Snake)
+				gfx.DrawCell(x ,y, c, dimension); // skips it
+		}
+	}
+	//gfx.DrawCell(loc, c, dimension);
 }
+
+void Board::SpawnContent(const Location& loc)
+{
+	Board1D[loc.y * Columns + loc.x] = { Content::Snake };
+}
+
+Board::Content Board::ContentCheck(int x, int y)
+{
+	return Board1D[y*Columns + x];
+}
+
 
 

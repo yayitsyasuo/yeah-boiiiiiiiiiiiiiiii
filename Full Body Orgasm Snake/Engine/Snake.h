@@ -9,6 +9,7 @@ public:
 			void Init(const Location& loc);
 			void Draw(Board& brd, Color c);
 			void Update(const Location& dl);
+			void SpawnSeg(Board& brd);
 		private:
 			Location loc; // used to have its own constructor hence the error- Segment would always have to do?
 						//alright it needs to have my normal fucking constructor
@@ -19,6 +20,7 @@ public:
 	Snake(const Location& in, Board& brd);
 	void Draw(Board& brd); // Board brd; NO! it'd be different object than the relevant one
 	void Update(const Location& dl);
+	void SpawnSegment(Board& brd);
 public:
 	Segment seg[100];
 	Color c = Colors::Yellow;

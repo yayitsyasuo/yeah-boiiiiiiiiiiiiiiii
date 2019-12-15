@@ -11,7 +11,9 @@ public:
 	};
 public:
 	Board(Graphics&gfx);
-	void DrawCell(Location loc, Color c);
+	void DrawCells(Color c);
+	void SpawnContent(const Location& loc);
+	Content ContentCheck(int x, int y);
 public:
 	static int constexpr Columns = 760 / 20;
 	static int constexpr Rows = 560 / 20;
