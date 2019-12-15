@@ -21,7 +21,7 @@ void Board::DrawCells(Color c)
 
 void Board::SpawnContent(const Location& loc)
 {
-	Board1D[loc.y * Columns + loc.x] = { Content::Snake };
+	Board1D[loc.y * Columns + loc.x] =  Content::Snake ;
 }
 
 Board::Content Board::ContentCheck(int x, int y)

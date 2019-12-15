@@ -243,7 +243,7 @@ Graphics::Graphics( HWNDKey& key )
 void Graphics::DrawCell(int x, int y, Color c, int dimension)
 {
 	DrawRectDim(x * dimension - dimension,
-		y * dimension - dimension,
+		y * dimension,
 		dimension, dimension, c);
 }
 
