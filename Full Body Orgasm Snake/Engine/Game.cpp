@@ -25,7 +25,7 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	snake(Location(15, 10)),
+	snake({15, 10}),
 	brd(gfx)
 {
 }

@@ -1,5 +1,5 @@
 #include "Snake.h"
-
+#include "Location.h"
 
 Snake::Snake(const Location & in)
 {
@@ -21,10 +21,10 @@ void Snake::Segment::Update(const Location & dl)
 	loc+=dl;
 }
 
+
 void Snake::Segment::Init(const Location & loc_in)
 {
-	loc.x = loc_in.x;
-	loc.y = loc_in.y;
+	loc = loc_in;
 }
 
 void Snake::Segment::Draw(Board & brd, Color c)

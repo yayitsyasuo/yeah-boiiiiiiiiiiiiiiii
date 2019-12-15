@@ -1,5 +1,5 @@
 #pragma once
-//#include "Location.h" wtf bri
+// #include "Location.h" wtf
 #include "Board.h"
 class Snake
 {
