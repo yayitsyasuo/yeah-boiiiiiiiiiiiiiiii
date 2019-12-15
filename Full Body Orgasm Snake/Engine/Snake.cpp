@@ -1,9 +1,11 @@
 #include "Snake.h"
 #include "Location.h"
 
-Snake::Snake(const Location & in)
+Snake::Snake(const Location & in, Board& brd)
 {
 	seg[0].Init(in);
+	Location l=(in + Location(0, brd.dimension));
+	seg[1].Init(l);
 }
 
 void Snake::Draw(Board & brd)
