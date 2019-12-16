@@ -13,10 +13,11 @@ public:
 	Board(Graphics& gfx);
 	void DrawCells(Color c);
 	void SpawnContent(const Location& loc);
+	void EmptyContent(const Location& loc);
 	Content ContentCheck(int x, int y);
 public:
-	static int constexpr Columns = 760 / 20; //38
-	static int constexpr Rows = 560 / 20; //28
+	static int constexpr Columns = 40; // 760 / 20; //38
+	static int constexpr Rows = 30; // 560 / 20; //28
 	static int constexpr dimension = 20;
 	Content Board1D[Columns*Rows] = {Content::Nothing};
 	Graphics& gfx;

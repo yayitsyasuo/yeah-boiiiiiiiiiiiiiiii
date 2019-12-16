@@ -14,9 +14,9 @@ void Snake::Draw(Board & brd)
 	seg[0].Draw(brd, c);
 }
 
-void Snake::Update(const Location & dl)
+void Snake::Update(Board& brd, const Location & dl)
 {
-	seg[0].Update(dl);
+	seg[0].Update( brd , dl);
 }
 
 void Snake::SpawnSegment(Board & brd)
@@ -24,9 +24,11 @@ void Snake::SpawnSegment(Board & brd)
 	seg[0].SpawnSeg(brd);
 }
 
-void Snake::Segment::Update(const Location & dl)
+void Snake::Segment::Update(Board& brd, const Location & dl)
 {
+	brd.EmptyContent(loc);
 	loc+=dl;
+	brd.SpawnContent(loc);
 }
 
 void Snake::Segment::SpawnSeg(Board & brd)

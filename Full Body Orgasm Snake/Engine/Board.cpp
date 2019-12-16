@@ -26,6 +26,11 @@ void Board::SpawnContent(const Location& loc)
 	Board1D[loc.y * Columns + loc.x] =  Content::Snake ;
 }
 
+void Board::EmptyContent(const Location & loc)
+{
+	Board1D[loc.y * Columns + loc.x] = Content::Nothing;
+}
+
 Board::Content Board::ContentCheck(int x, int y)
 {
 	return Board1D[y*Columns + x];
