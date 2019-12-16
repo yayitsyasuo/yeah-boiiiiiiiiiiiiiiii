@@ -21,9 +21,9 @@ void Board::DrawCells(Color c)
 	//gfx.DrawCell(loc, c, dimension);
 }
 
-void Board::SpawnContent(const Location& loc)
+void Board::SpawnContent(const Location& loc, const Content content)
 {
-	Board1D[loc.y * Columns + loc.x] =  Content::Snake ;
+	Board1D[loc.y * Columns + loc.x] =  content ;
 }
 
 void Board::EmptyContent(const Location & loc)

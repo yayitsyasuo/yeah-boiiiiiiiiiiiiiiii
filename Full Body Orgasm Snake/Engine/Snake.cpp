@@ -38,7 +38,7 @@ void Snake::Update(Board& brd, const Location & dl) // the guy that calls everyt
 void Snake::Segment::ContentUpdate(Board& brd, const Location & newLoc)
 {
 	brd.EmptyContent(loc);
-	brd.SpawnContent(newLoc);
+	brd.SpawnContent(newLoc, Board::Content::Snake);
 	loc = newLoc;
 }
 

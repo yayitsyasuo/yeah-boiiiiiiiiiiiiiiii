@@ -7,12 +7,13 @@ public:
 	enum class Content
 	{
 		Nothing,
-		Snake
+		Snake,
+		Fruit
 	};
 public:
 	Board(Graphics& gfx);
 	void DrawCells(Color c);
-	void SpawnContent(const Location& loc);
+	void SpawnContent(const Location& loc,const Content content);
 	void EmptyContent(const Location& loc);
 	Content ContentCheck(int x, int y);
 public:
