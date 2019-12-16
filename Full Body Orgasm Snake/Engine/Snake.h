@@ -23,7 +23,6 @@ public:
 	Snake(const Location& in, Board& brd);
 	void Draw(Board& brd); // Board brd; NO! it'd be different object than the relevant one
 	void Update( Board& brd, const Location& dl);
-	void Grow();
 //	void SpawnSegment(Board& brd);
 //	void Follow(Board& brd);
 private:
