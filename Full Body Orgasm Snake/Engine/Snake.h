@@ -11,7 +11,7 @@ public:
 			void ContentUpdate( Board& brd, const Location& dl);
 		//	void SpawnSeg(Board& brd);
 		//	void Follow(Board& brd, const Location& l);
-			void ControltheHead(Board& brd, const Location & dl);
+			Board::Content ControltheHead(Board& brd, const Location & dl);
 			void HeadContentUpdate(Board& brd, const Location & dl);
 			const Location& GetLoc() const;
 		private:

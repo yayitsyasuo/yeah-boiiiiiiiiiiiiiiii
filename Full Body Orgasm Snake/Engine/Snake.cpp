@@ -29,7 +29,11 @@ void Snake::Update(Board& brd, const Location & dl) // the guy that calls everyt
 	}
 	justonce = false;
 
-	seg[0].ControltheHead(brd, dl); // this guy gets some exlusive shit
+	if (seg[0].ControltheHead(brd, dl) == Board::Content::Fruit) // this guy gets some exlusive shit
+	{
+		nSegments++;
+		seg[nSegments].Init(seg[nSegments-1].GetLoc());
+	}
 }
 
 void Snake::Segment::ContentUpdate(Board& brd, const Location & previous_loc)
@@ -39,15 +43,18 @@ void Snake::Segment::ContentUpdate(Board& brd, const Location & previous_loc)
 	loc = previous_loc;
 }
 
-void Snake::Segment::ControltheHead(Board & brd, const Location & dl) // exclusively for the head
+Board::Content Snake::Segment::ControltheHead(Board & brd, const Location & dl) // exclusively for the head
 {
 	Location newLoc = loc + dl;
 	HeadContentUpdate(brd, newLoc);
 
-//	Board::Content content = brd.ContentCheck(newLoc.x, newLoc.y);
-//	switch (content) {
-//	case Board::Content::Fruit:
-//	}
+	Board::Content content = brd.ContentCheck(newLoc.x, newLoc.y);
+	switch (content) {
+	case Board::Content::Fruit:
+		return Board::Content::Fruit;
+	default:
+		return Board::Content::Nothing;
+	}
 }
 
 void Snake::Segment::HeadContentUpdate(Board & brd, const Location & previous_loc)
