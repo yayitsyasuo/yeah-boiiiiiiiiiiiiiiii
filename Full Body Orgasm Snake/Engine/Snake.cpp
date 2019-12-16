@@ -19,14 +19,19 @@ void Snake::Draw(Board & brd)
 
 void Snake::Update(Board& brd, const Location & dl) // the guy that calls everything since he's being called in Game.cpp
 {
+
 	const Location previousLoc = seg[0].GetLoc();
 	//head
-	seg[0].ControltheHead( brd, dl);
-	//segments
-	for (int i = 1; i <= nSegments; i++)
-	{
-		seg[i].ContentUpdate(brd, previousLoc); //GetLoc b4 the update
+		seg[0].ControltheHead(brd, dl);
+	if (!justonce) { // Graphics aren't yet initialized to Draw shit in initializer 
+		//segments      so I had to do it the old way
+		for (int i = 1; i <= nSegments; i++)
+		{
+			seg[i].ContentUpdate(brd, previousLoc); //GetLoc b4 the update
+		}
+
 	}
+	justonce = false;
 	
 }
 

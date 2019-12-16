@@ -53,7 +53,7 @@ void Game::UpdateModel()
 		dloc = { 0, 1 };
 
 	dtSum += dt;
-	if (dtSum > dtSumLimit+2.0f)
+	if (dtSum > dtSumLimit)
 	{
 		dtSum -= dtSum;
 		snake.Update(brd, dloc);

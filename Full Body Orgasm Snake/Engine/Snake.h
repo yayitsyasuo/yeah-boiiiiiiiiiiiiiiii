@@ -30,6 +30,7 @@ private:
 	int nSegments=1;
 	Segment seg[segMax];
 	Color c = Colors::Yellow;
+	bool justonce = true;
 	 // Board brd; NO! it'd be different object than the relevant one
 	// Board brd; don't fucking use it 
 };
