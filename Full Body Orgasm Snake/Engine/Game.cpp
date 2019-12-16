@@ -28,7 +28,7 @@ Game::Game( MainWindow& wnd )
 	snake({15, 10}, brd),
 	brd(gfx)
 {
-	snake.SpawnSegment(brd);
+	// snake.SpawnSegment(brd);
 }
 
 void Game::Go()

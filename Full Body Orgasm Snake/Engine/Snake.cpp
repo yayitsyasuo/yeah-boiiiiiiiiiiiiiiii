@@ -17,45 +17,30 @@ void Snake::Draw(Board & brd)
 	seg[i].Draw(brd, c);
 }
 
-void Snake::Update(Board& brd, const Location & dl)
+void Snake::Update(Board& brd, const Location & dl) // the guy that calls everything since he's being called in Game.cpp
 {
+	const Location previousLoc = seg[0].GetLoc();
+	//head
 	seg[0].ControltheHead( brd, dl);
+	//segments
 	for (int i = 1; i <= nSegments; i++)
-		Follow(brd);
+	{
+		seg[i].ContentUpdate(brd, previousLoc); //GetLoc b4 the update
+	}
+	
 }
 
-void Snake::SpawnSegment(Board & brd)
-{
-	for (int i = 0; i <= nSegments; i++)
-	seg[i].SpawnSeg(brd);
-}
-
-void Snake::Follow(Board& brd)
-{
-	seg[1].Follow(brd, seg[0].GetLoc());
-}
-
-void Snake::Segment::Update(Board& brd, const Location & newLoc)
+void Snake::Segment::ContentUpdate(Board& brd, const Location & newLoc)
 {
 	brd.EmptyContent(loc);
 	brd.SpawnContent(newLoc);
-}
-
-void Snake::Segment::SpawnSeg(Board & brd)
-{
-	brd.SpawnContent(loc);
-}
-
-void Snake::Segment::Follow(Board& brd, const Location & l)
-{
-	Location dl = l;
-	Update(brd, loc);
+	loc = newLoc;
 }
 
 void Snake::Segment::ControltheHead(Board & brd, const Location & dl)
 {
 	Location newLoc = loc + dl;
-	Update(brd, newLoc);
+	ContentUpdate(brd, newLoc);
 }
 
 const Location & Snake::Segment::GetLoc() const

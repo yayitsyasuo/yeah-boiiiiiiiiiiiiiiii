@@ -8,9 +8,9 @@ public:
 		public: // can't initialize constructor when the object is a fucking array
 			void Init(const Location& loc);
 			void Draw(Board& brd, Color c);
-			void Update( Board& brd, const Location& dl);
-			void SpawnSeg(Board& brd);
-			void Follow(Board& brd, const Location& l);
+			void ContentUpdate( Board& brd, const Location& dl);
+		//	void SpawnSeg(Board& brd);
+		//	void Follow(Board& brd, const Location& l);
 			void ControltheHead(Board& brd, const Location & dl);
 			const Location& GetLoc() const;
 		private:
@@ -23,8 +23,8 @@ public:
 	Snake(const Location& in, Board& brd);
 	void Draw(Board& brd); // Board brd; NO! it'd be different object than the relevant one
 	void Update( Board& brd, const Location& dl);
-	void SpawnSegment(Board& brd);
-	void Follow(Board& brd);
+//	void SpawnSegment(Board& brd);
+//	void Follow(Board& brd);
 private:
 	static constexpr int segMax=100;
 	int nSegments=1;
