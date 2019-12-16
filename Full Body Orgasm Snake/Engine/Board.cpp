@@ -8,9 +8,9 @@ Board::Board(Graphics& gfx)
 
 void Board::DrawCells(Color c)
 {
-	for (int y = 0; y <= Rows; y++)
+	for (int y = 0; y < Rows; y++)
 	{
-		for (int x = 0; x <= Columns; x++)
+		for (int x = 0; x < Columns; x++) // <= made an error nice
 		{
 			if (ContentCheck(x, y) == Content::Snake)
 			{
