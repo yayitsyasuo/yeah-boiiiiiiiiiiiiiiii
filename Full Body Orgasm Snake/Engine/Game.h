@@ -27,6 +27,7 @@
 #include "Snake.h"
 #include "Board.h"
 #include "FrameTimer.h"
+#include <random>
 
 class Game
 {
@@ -49,8 +50,10 @@ private:
 	/********************************/
 	Snake snake;
 	Board brd;
+	std::mt19937 rnd;
 	Location dloc = {1,0};
 	FrameTimer ft;
 	float dtSum = 0.0f;
 	static constexpr float dtSumLimit= 0.1f;
+	Color c = Colors::Red;
 };

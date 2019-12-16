@@ -6,13 +6,13 @@ Board::Board(Graphics& gfx)
 {
 }
 
-void Board::DrawCells(Color c)
+void Board::DrawCells(Color c, Content content)
 {
 	for (int y = 0; y < Rows; y++)
 	{
 		for (int x = 0; x < Columns; x++) // <= made an error nice
 		{
-			if (ContentCheck(x, y) == Content::Snake)
+			if (ContentCheck(x, y) == content)
 			{
 				gfx.DrawCell(x, y, c, dimension); // skips it
 			}
@@ -26,7 +26,7 @@ void Board::SpawnContent(const Location& loc, const Content content)
 	Board1D[loc.y * Columns + loc.x] =  content ;
 }
 
-void Board::SpawnFeatures(std::mt19937 rnd, const Content content)
+void Board::SpawnFeature(std::mt19937 rnd, const Content content)
 {
 	std::uniform_int_distribution<int> Xdist(0, Columns);
 	std::uniform_int_distribution<int> Ydist(0, Rows);

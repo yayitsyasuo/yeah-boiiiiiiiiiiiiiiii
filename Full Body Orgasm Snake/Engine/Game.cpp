@@ -26,8 +26,10 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd ),
 	snake({15, 10}, brd),
-	brd(gfx)
+	brd(gfx),
+	rnd(std::random_device ()())
 {
+	brd.SpawnFeature(rnd, Board::Content::Fruit);
 	// snake.SpawnSegment(brd);
 }
 
@@ -63,4 +65,5 @@ void Game::UpdateModel()
 void Game::ComposeFrame()
 {
 	snake.Draw(brd);
+	brd.DrawCells(c, Board::Content::Fruit);
 }

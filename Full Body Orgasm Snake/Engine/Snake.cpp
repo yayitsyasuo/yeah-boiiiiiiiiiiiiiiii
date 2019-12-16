@@ -60,5 +60,5 @@ void Snake::Segment::Init(const Location & loc_in)
 
 void Snake::Segment::Draw(Board & brd, Color c)
 {
-	brd.DrawCells(c);
+	brd.DrawCells(c, Board::Content::Snake);
 }
