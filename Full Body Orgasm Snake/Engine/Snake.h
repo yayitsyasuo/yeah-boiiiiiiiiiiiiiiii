@@ -21,8 +21,10 @@ public:
 	void Draw(Board& brd); // Board brd; NO! it'd be different object than the relevant one
 	void Update( Board& brd, const Location& dl);
 	void SpawnSegment(Board& brd);
-public:
-	Segment seg[100];
+private:
+	static constexpr int segMax=100;
+	int nSegments=1;
+	Segment seg[segMax];
 	Color c = Colors::Yellow;
 	 // Board brd; NO! it'd be different object than the relevant one
 	// Board brd; don't fucking use it 

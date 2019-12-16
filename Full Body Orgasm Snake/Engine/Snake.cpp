@@ -5,13 +5,16 @@ Snake::Snake(const Location & in, Board& brd)
 {
 	// brd.SpawnContent(in); //gives it place in the grid based on that loc
 	seg[0].Init(in); // gives it location
+	seg[1].Init(in+Location(-1,0));
 	// Location l=(in + Location(0, brd.dimension));
 	// seg[1].Init(l);
 }
 
 void Snake::Draw(Board & brd)
 {
-	seg[0].Draw(brd, c);
+	// for(Segment&s : seg)
+	for(int i=0; i<=nSegments; i++)
+	seg[i].Draw(brd, c);
 }
 
 void Snake::Update(Board& brd, const Location & dl)
@@ -21,7 +24,8 @@ void Snake::Update(Board& brd, const Location & dl)
 
 void Snake::SpawnSegment(Board & brd)
 {
-	seg[0].SpawnSeg(brd);
+	for (int i = 0; i <= nSegments; i++)
+	seg[i].SpawnSeg(brd);
 }
 
 void Snake::Segment::Update(Board& brd, const Location & dl)
