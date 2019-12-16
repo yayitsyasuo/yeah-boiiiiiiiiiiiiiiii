@@ -19,10 +19,12 @@ void Snake::Draw(Board & brd)
 
 void Snake::Update(Board& brd, const Location & dl) // the guy that calls everything since he's being called in Game.cpp
 {
-	if (!justonce) { // Graphics aren't yet initialized to Draw shit in initializer 
+	if (!justonce) { // Graphics aren't yet initialized to Draw shit in initializer
+		for (int i = 1; i <= nSegments; i++)
+			const Location prevLoc[i] = seg[i - 1].GetLoc();
 		for (int i = 1; i <= nSegments; i++)
 		{
-			const Location previousLoc = seg[i-1].GetLoc();
+			const Location previousLoc = seg[i-1].GetLoc(); // here;s the problem
 			seg[i].ContentUpdate(brd, previousLoc); //GetLoc b4 the update
 		}
 
@@ -46,15 +48,26 @@ void Snake::Segment::ContentUpdate(Board& brd, const Location & previous_loc)
 Board::Content Snake::Segment::ControltheHead(Board & brd, const Location & dl) // exclusively for the head
 {
 	Location newLoc = loc + dl;
-	HeadContentUpdate(brd, newLoc);
 
-	Board::Content content = brd.ContentCheck(newLoc.x, newLoc.y);
-	switch (content) {
-	case Board::Content::Fruit:
+	Board::Content content = brd.ContentCheck(newLoc.x, newLoc.y); 
+	if (content == Board::Content::Fruit) //IT WORKS!
+	{
+		HeadContentUpdate(brd, newLoc);
 		return Board::Content::Fruit;
-	default:
+	}
+	else
+	{
+		HeadContentUpdate(brd, newLoc);
 		return Board::Content::Nothing;
 	}
+//	switch (content) {
+//	case Board::Content::Fruit:
+//		HeadContentUpdate(brd, newLoc);
+//		return Board::Content::Fruit;
+//	default:
+//		HeadContentUpdate(brd, newLoc);
+//		return Board::Content::Nothing;
+//	}
 }
 
 void Snake::Segment::HeadContentUpdate(Board & brd, const Location & previous_loc)
