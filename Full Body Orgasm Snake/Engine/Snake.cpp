@@ -26,11 +26,11 @@ void Snake::Update(Board& brd, const Location & dl) // the guy that calls everyt
 			if (i == nSegments) 
 			{
 				const Location previousLoc = seg[i - 1].GetLoc(); // here;s the problem
-				seg[i].ContentUpdate(brd, previousLoc); //Ge
+				seg[i].LastContentUpdate(brd, previousLoc); //Ge
 			}
 			else {
 				const Location previousLoc = seg[i - 1].GetLoc(); // here;s the problem
-				seg[i].HeadContentUpdate(brd, previousLoc); //GetLoc b4 the update
+				seg[i].ContentUpdate(brd, previousLoc); //GetLoc b4 the update
 			}
 		}
 
@@ -41,10 +41,11 @@ void Snake::Update(Board& brd, const Location & dl) // the guy that calls everyt
 	{
 		nSegments++;
 		seg[nSegments].Init(seg[nSegments-1].GetLoc());
+	// New Food init here
 	}
 }
 
-void Snake::Segment::ContentUpdate(Board& brd, const Location & previous_loc)
+void Snake::Segment::LastContentUpdate(Board& brd, const Location & previous_loc)
 {
 	brd.EmptyContent(loc); // this shit right here is dangerous
 	brd.SpawnContent(previous_loc, Board::Content::Snake);
@@ -55,28 +56,17 @@ Board::Content Snake::Segment::ControltheHead(Board & brd, const Location & dl) 
 {
 	Location newLoc = loc + dl;
 
-	Board::Content content = brd.ContentCheck(newLoc.x, newLoc.y); 
-	if (content == Board::Content::Fruit) //IT WORKS!
-	{
-		HeadContentUpdate(brd, newLoc);
+	switch (brd.ContentCheck(newLoc.x, newLoc.y)) {
+	case Board::Content::Fruit:
+		ContentUpdate(brd, newLoc);
 		return Board::Content::Fruit;
-	}
-	else
-	{
-		HeadContentUpdate(brd, newLoc);
+	default:
+		ContentUpdate(brd, newLoc);
 		return Board::Content::Nothing;
 	}
-//	switch (content) {
-//	case Board::Content::Fruit:
-//		HeadContentUpdate(brd, newLoc);
-//		return Board::Content::Fruit;
-//	default:
-//		HeadContentUpdate(brd, newLoc);
-//		return Board::Content::Nothing;
-//	}
 }
 
-void Snake::Segment::HeadContentUpdate(Board & brd, const Location & previous_loc)
+void Snake::Segment::ContentUpdate(Board & brd, const Location & previous_loc)
 {
 	brd.SpawnContent(previous_loc, Board::Content::Snake);
 	loc = previous_loc;

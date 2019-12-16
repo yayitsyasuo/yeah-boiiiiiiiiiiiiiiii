@@ -1,6 +1,7 @@
 #pragma once
 // #include "Location.h" wtf
 #include "Board.h"
+#include <random>
 class Snake
 {
 public:
@@ -8,11 +9,11 @@ public:
 		public: // can't initialize constructor when the object is a fucking array
 			void Init(const Location& loc);
 			void Draw(Board& brd, Color c);
-			void ContentUpdate( Board& brd, const Location& dl);
+			void LastContentUpdate( Board& brd, const Location& dl);
 		//	void SpawnSeg(Board& brd);
 		//	void Follow(Board& brd, const Location& l);
 			Board::Content ControltheHead(Board& brd, const Location & dl);
-			void HeadContentUpdate(Board& brd, const Location & dl);
+			void ContentUpdate(Board& brd, const Location & dl);
 			const Location& GetLoc() const;
 		private:
 			Location loc; // used to have its own constructor hence the error- Segment would always have to do?
@@ -24,10 +25,10 @@ public:
 	Snake(const Location& in, Board& brd);
 	void Draw(Board& brd); // Board brd; NO! it'd be different object than the relevant one
 	void Update( Board& brd, const Location& dl);
-	void Grow();
 //	void SpawnSegment(Board& brd);
 //	void Follow(Board& brd);
 private:
+	std::mt19937 rnd;
 	static constexpr int segMax=100;
 	int nSegments=1;
 	Segment seg[segMax];
