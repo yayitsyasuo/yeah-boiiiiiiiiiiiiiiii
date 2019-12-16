@@ -64,8 +64,8 @@ public:
 	}
 	void DrawCell(int x, int y, Color c, int dimension)
 	{
-		int xx = x * dimension;
-		int yy = y * dimension;
+		int xx = (x+1) * dimension;
+		int yy = (y+1) * dimension;
 		DrawRectDim(xx - dimension,
 			yy,
 			dimension, dimension, c);
