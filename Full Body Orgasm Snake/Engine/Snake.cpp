@@ -19,7 +19,9 @@ void Snake::Draw(Board & brd)
 
 void Snake::Update(Board& brd, const Location & dl)
 {
-	seg[0].Update( brd , dl);
+	seg[0].ControltheHead( brd, dl);
+	for (int i = 1; i <= nSegments; i++)
+		Follow(brd);
 }
 
 void Snake::SpawnSegment(Board & brd)
@@ -28,16 +30,32 @@ void Snake::SpawnSegment(Board & brd)
 	seg[i].SpawnSeg(brd);
 }
 
-void Snake::Segment::Update(Board& brd, const Location & dl)
+void Snake::Follow(Board& brd)
+{
+	seg[1].Follow(brd, seg[0].GetLoc());
+}
+
+void Snake::Segment::Update(Board& brd, const Location & newLoc)
 {
 	brd.EmptyContent(loc);
-	loc+=dl;
-	brd.SpawnContent(loc);
+	brd.SpawnContent(newLoc);
 }
 
 void Snake::Segment::SpawnSeg(Board & brd)
 {
 	brd.SpawnContent(loc);
+}
+
+void Snake::Segment::Follow(Board& brd, const Location & l)
+{
+	Location dl = l;
+	Update(brd, loc);
+}
+
+void Snake::Segment::ControltheHead(Board & brd, const Location & dl)
+{
+	Location newLoc = loc + dl;
+	Update(brd, newLoc);
 }
 
 const Location & Snake::Segment::GetLoc() const
