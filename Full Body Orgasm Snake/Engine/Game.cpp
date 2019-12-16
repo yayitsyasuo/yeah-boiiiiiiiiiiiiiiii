@@ -29,6 +29,7 @@ Game::Game( MainWindow& wnd )
 	brd(gfx),
 	rnd(std::random_device ()())
 {
+	for(int i=0; i<nFruits; i++)
 	brd.SpawnFeature(rnd, Board::Content::Fruit);
 	// snake.SpawnSegment(brd);
 }

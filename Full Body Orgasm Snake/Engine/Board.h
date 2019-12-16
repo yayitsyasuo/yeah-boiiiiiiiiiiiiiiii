@@ -15,7 +15,7 @@ public:
 	Board(Graphics& gfx);
 	void DrawCells(Color c, Content content);
 	void SpawnContent(const Location& loc,const Content content);
-	void SpawnFeature(std::mt19937 rnd, const Content content );
+	void SpawnFeature(std::mt19937& rnd, const Content content );
 	void EmptyContent(const Location& loc);
 	Content ContentCheck(int x, int y);
 public:

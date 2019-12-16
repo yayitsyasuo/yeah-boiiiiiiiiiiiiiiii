@@ -23,6 +23,7 @@ void Snake::Update(Board& brd, const Location & dl) // the guy that calls everyt
 	const Location previousLoc = seg[0].GetLoc();
 	//head
 		seg[0].ControltheHead(brd, dl);
+
 	if (!justonce) { // Graphics aren't yet initialized to Draw shit in initializer 
 		//segments      so I had to do it the old way
 		for (int i = 1; i <= nSegments; i++)
@@ -35,17 +36,28 @@ void Snake::Update(Board& brd, const Location & dl) // the guy that calls everyt
 	
 }
 
-void Snake::Segment::ContentUpdate(Board& brd, const Location & newLoc)
+void Snake::Grow()
 {
-	brd.EmptyContent(loc);
-	brd.SpawnContent(newLoc, Board::Content::Snake);
-	loc = newLoc;
+	nSegments++;
 }
 
-void Snake::Segment::ControltheHead(Board & brd, const Location & dl)
+
+void Snake::Segment::ContentUpdate(Board& brd, const Location & previous_loc)
+{
+	brd.EmptyContent(loc);
+	brd.SpawnContent(previous_loc, Board::Content::Snake);
+	loc = previous_loc;
+}
+
+void Snake::Segment::ControltheHead(Board & brd, const Location & dl) // exclusively for the head
 {
 	Location newLoc = loc + dl;
 	ContentUpdate(brd, newLoc);
+
+	Board::Content content = brd.ContentCheck(newLoc.x, newLoc.y);
+	switch (content) {
+	case Board::Content::Fruit:
+	}
 }
 
 const Location & Snake::Segment::GetLoc() const
