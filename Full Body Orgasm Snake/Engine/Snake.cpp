@@ -40,6 +40,11 @@ void Snake::Segment::SpawnSeg(Board & brd)
 	brd.SpawnContent(loc);
 }
 
+const Location & Snake::Segment::GetLoc() const
+{
+	return loc;
+}
+
 void Snake::Segment::Init(const Location & loc_in)
 {
 	loc = loc_in;
