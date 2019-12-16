@@ -19,7 +19,7 @@ public:
 	void EmptyContent(const Location& loc);
 	Content ContentCheck(int x, int y);
 public:
-	static int constexpr Columns = 40; // 760 / 20; //38
+	static int constexpr Columns = 39; // 760 / 20; //38
 	static int constexpr Rows = 30; // 560 / 20; //28
 	static int constexpr dimension = 20;
 	Content Board1D[Columns*Rows] = {Content::Nothing};

@@ -12,6 +12,7 @@ public:
 		//	void SpawnSeg(Board& brd);
 		//	void Follow(Board& brd, const Location& l);
 			void ControltheHead(Board& brd, const Location & dl);
+			void HeadContentUpdate(Board& brd, const Location & dl);
 			const Location& GetLoc() const;
 		private:
 			Location loc; // used to have its own constructor hence the error- Segment would always have to do?
