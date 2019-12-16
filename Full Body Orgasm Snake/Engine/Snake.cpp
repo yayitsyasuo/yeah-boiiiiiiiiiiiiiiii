@@ -5,7 +5,7 @@ Snake::Snake(const Location & in, Board& brd)
 {
 	// brd.SpawnContent(in); //gives it place in the grid based on that loc
 	seg[0].Init(in); // gives it location
-	seg[1].Init(in+Location(-1,0));
+	seg[1].Init(in);
 	// Location l=(in + Location(0, brd.dimension));
 	// seg[1].Init(l);
 }
