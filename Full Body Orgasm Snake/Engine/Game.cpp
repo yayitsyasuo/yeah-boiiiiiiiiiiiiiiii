@@ -59,12 +59,12 @@ void Game::UpdateModel()
 	if (dtSum > dtSumLimit)
 	{
 		dtSum -= dtSum;
-		snake.Update(brd, dloc);
+		snake.Update(dloc);
 	}
 }
 
 void Game::ComposeFrame()
 {
-	snake.Draw(brd);
+	snake.Draw();
 	brd.DrawCells(c, Board::Content::Fruit);
 }

@@ -23,12 +23,13 @@ public:
 	};
 public:
 	Snake(const Location& in, Board& brd);
-	void Draw(Board& brd); // Board brd; NO! it'd be different object than the relevant one
-	void Update( Board& brd, const Location& dl);
+	void Draw(); // Board brd; NO! it'd be different object than the relevant one
+	void Update(const Location& dl);
 //	void SpawnSegment(Board& brd);
 //	void Follow(Board& brd);
 private:
 	std::mt19937 rnd;
+	Board& brd;
 	static constexpr int segMax=100;
 	int nSegments=1;
 	Segment seg[segMax];

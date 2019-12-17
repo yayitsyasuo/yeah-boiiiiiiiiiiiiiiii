@@ -2,6 +2,9 @@
 #include "Location.h"
 
 Snake::Snake(const Location & in, Board& brd)
+	:
+	rnd(std::random_device()()),
+	brd(brd)
 {
 	// brd.SpawnContent(in); //gives it place in the grid based on that loc
 	seg[0].Init(in); // gives it location
@@ -10,14 +13,14 @@ Snake::Snake(const Location & in, Board& brd)
 	// seg[1].Init(l);
 }
 
-void Snake::Draw(Board & brd)
+void Snake::Draw()
 {
 	// for(Segment&s : seg)
 	for(int i=0; i<=nSegments; i++)
 	seg[i].Draw(brd, c);
 }
 
-void Snake::Update(Board& brd, const Location & dl) // the guy that calls everything since he's being called in Game.cpp
+void Snake::Update(const Location & dl) // the guy that calls everything since he's being called in Game.cpp
 {
 	if (!justonce) { // Graphics aren't yet initialized to Draw shit in initializer
 

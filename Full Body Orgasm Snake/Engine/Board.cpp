@@ -1,4 +1,5 @@
 #include "Board.h"
+#include <assert.h>
 
 Board::Board(Graphics& gfx)
 	:
@@ -42,6 +43,8 @@ void Board::EmptyContent(const Location & loc)
 
 Board::Content Board::ContentCheck(int x, int y)
 {
+	//assert(y >= 0);
+	assert(x >= 0);
 	return Board1D[y*Columns + x];
 }
 
