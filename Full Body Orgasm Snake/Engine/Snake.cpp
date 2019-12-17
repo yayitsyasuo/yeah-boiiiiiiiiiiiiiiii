@@ -15,9 +15,10 @@ Snake::Snake(const Location & in, Board& brd)
 
 void Snake::Draw()
 {
+
 	// for(Segment&s : seg)
-	for(int i=0; i<=nSegments; i++)
-	seg[i].Draw(brd, c);
+	seg[0].Draw(brd, c[nColour], Board::Content::Snake);
+	seg[0].Draw(brd, HeadC, Board::Content::Head); // head has got some exclusive shit yeah
 }
 
 void Snake::Update(const Location & dl) // the guy that calls everything since he's being called in Game.cpp
@@ -28,12 +29,12 @@ void Snake::Update(const Location & dl) // the guy that calls everything since h
 		{
 			if (i == nSegments) 
 			{
-				const Location previousLoc = seg[i - 1].GetLoc(); // here;s the problem
-				seg[i].LastContentUpdate(brd, previousLoc); //Ge
+				const Location previousLoc = seg[i - 1].GetLoc();
+				seg[i].LastContentUpdate(brd, previousLoc);
 			}
 			else {
-				const Location previousLoc = seg[i - 1].GetLoc(); // here;s the problem
-				seg[i].ContentUpdate(brd, previousLoc); //GetLoc b4 the update
+				const Location previousLoc = seg[i - 1].GetLoc();
+				seg[i].ContentUpdate(brd, previousLoc, Board::Content::Snake);
 			}
 		}
 
@@ -43,8 +44,13 @@ void Snake::Update(const Location & dl) // the guy that calls everything since h
 	if (seg[0].ControltheHead(brd, dl) == Board::Content::Fruit) // this guy gets some exlusive shit
 	{
 		nSegments++;
-		seg[nSegments].Init(seg[nSegments-1].GetLoc());
+		if (nColour == 5) // controling the color array
+			nColour = 0;
+		else
+		nColour++;
+		seg[nSegments].Init(seg[nSegments - 1].GetLoc());
 	// New Food init here
+		brd.SpawnFeature(rnd, Board::Content::Fruit);
 	}
 }
 
@@ -61,17 +67,17 @@ Board::Content Snake::Segment::ControltheHead(Board & brd, const Location & dl) 
 
 	switch (brd.ContentCheck(newLoc.x, newLoc.y)) {
 	case Board::Content::Fruit:
-		ContentUpdate(brd, newLoc);
+		ContentUpdate(brd, newLoc, Board::Content::Head);
 		return Board::Content::Fruit;
 	default:
-		ContentUpdate(brd, newLoc);
+		ContentUpdate(brd, newLoc, Board::Content::Head);
 		return Board::Content::Nothing;
 	}
 }
 
-void Snake::Segment::ContentUpdate(Board & brd, const Location & previous_loc)
+void Snake::Segment::ContentUpdate(Board & brd, const Location & previous_loc,const Board::Content content)
 {
-	brd.SpawnContent(previous_loc, Board::Content::Snake);
+	brd.SpawnContent(previous_loc, content);
 	loc = previous_loc;
 }
 
@@ -85,7 +91,7 @@ void Snake::Segment::Init(const Location & loc_in)
 	loc = loc_in;
 }
 
-void Snake::Segment::Draw(Board & brd, Color c)
+void Snake::Segment::Draw(Board & brd, Color c, Board::Content content)
 {
-	brd.DrawCells(c, Board::Content::Snake);
+	brd.DrawCells(c, content);
 }
