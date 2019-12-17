@@ -67,4 +67,5 @@ void Game::ComposeFrame()
 {
 	snake.Draw();
 	brd.DrawCells(c, Board::Content::Fruit);
+	f.TriLT(gfx);
 }
