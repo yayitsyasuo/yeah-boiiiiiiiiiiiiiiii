@@ -66,9 +66,9 @@ public:
 	{
 		int xx = (x+1) * dimension;
 		int yy = (y+1) * dimension;
-		DrawRectDim(xx - dimension,
-			yy,
-			dimension, dimension, c);
+		DrawRectDim(xx -1 - dimension,
+			yy -1 ,
+			dimension -1, dimension -1, c); //that -1 is padding
 	}
 	~Graphics();
 private:

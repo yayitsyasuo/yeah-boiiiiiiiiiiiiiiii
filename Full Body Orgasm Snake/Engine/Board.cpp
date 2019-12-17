@@ -15,7 +15,7 @@ void Board::DrawCells(Color c, Content content)
 		{
 			if (ContentCheck(x, y) == content)
 			{
-				gfx.DrawCell(x, y, c, SnakeDimension); // skips it
+				gfx.DrawCell(x, y, c, dimension); // padding is inside Graphics !
 			}
 		}
 	}

@@ -23,7 +23,7 @@ public:
 	static int constexpr Columns = 39; // 760 / 20; //38
 	static int constexpr Rows = 29; // 560 / 20; //28
 	static int constexpr dimension = 20;
-	static int constexpr SnakeDimension = 19;
+	 // static int constexpr SnakeDimension = 19; padding is inside Graphics !
 	Content Board1D[Columns*Rows] = {Content::Nothing};
 	Graphics& gfx;
 
