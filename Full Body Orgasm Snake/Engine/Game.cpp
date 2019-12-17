@@ -27,7 +27,8 @@ Game::Game( MainWindow& wnd )
 	gfx( wnd ),
 	snake({15, 10}, brd),
 	brd(gfx),
-	rnd(std::random_device ()())
+	rnd(std::random_device ()()),
+	f(gfx)
 {
 	for(int i=0; i<nFruits; i++)
 	brd.SpawnFeature(rnd, Board::Content::Fruit);
@@ -67,5 +68,5 @@ void Game::ComposeFrame()
 {
 	snake.Draw();
 	brd.DrawCells(c, Board::Content::Fruit);
-	f.TriLT(gfx);
+	f.DrawAlles();
 }
