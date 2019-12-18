@@ -8,32 +8,32 @@ Frame::Frame(Graphics& gfx)
 
 void Frame::DrawAlles()
 {
+	Color cc = Colors::Red;
 	//left top left tri
-	TriLTL(GetLoc(Gap,Gap), leftFactor);
+	TriLTL(GetLoc(Gap,Gap), GetColor(leftFactor));
 	// left bottom left tri
-	TriLDL(GetLoc(Gap, gfx.ScreenHeight - Gap - TriWidth), LL);
+	TriLDL(GetLoc(Gap, gfx.ScreenHeight - Gap - TriWidth), GetColor(leftFactor));
 	//left left RECT
-	Rect(Gap, Gap + TriWidth, Gap + TriWidth, gfx.ScreenHeight - Gap - TriWidth, LL);
+	Rect(Gap, Gap + TriWidth, Gap + TriWidth, gfx.ScreenHeight - Gap - TriWidth, GetColor(leftFactor));
 	//left top right tri
-	TriLTL(GetLoc(Gap + TriWidth, Gap+TriWidth), LR);
+	TriLTL(GetLoc(Gap + TriWidth, Gap+TriWidth), GetColor(rightFactor));
 	//left bottom right
-	TriLDL(GetLoc(Gap + TriWidth, gfx.ScreenHeight - Gap - TriWidth - TriWidth), LR);
-	Rect(Gap + TriWidth, Gap + 2*TriWidth, Gap + 2*TriWidth, gfx.ScreenHeight - Gap - 2*TriWidth, LR);
+	TriLDL(GetLoc(Gap + TriWidth, gfx.ScreenHeight - Gap - TriWidth - TriWidth), GetColor(rightFactor));
+	Rect(Gap + TriWidth, Gap + 2*TriWidth, Gap + 2*TriWidth, gfx.ScreenHeight - Gap - 2*TriWidth, GetColor(rightFactor));
 
 
 	//left top left top tri
-	Color ccusa = Colors::Red;
-	TriLTL2(GetLoc(Gap, Gap), ccusa);
+	TriLTL2(GetLoc(Gap, Gap), GetColor(topFactor));
 	//left top left bottom tri
-	TriLTL2(GetLoc(Gap + TriWidth, Gap + TriWidth), ccusa);
+	TriLTL2(GetLoc(Gap + TriWidth, Gap + TriWidth), GetColor(bottomFactor));
 	//top top rect
-	Rect(Gap+TriWidth, Gap, gfx.ScreenWidth-TriWidth-Gap, Gap+TriWidth, LL);
+	Rect(Gap+TriWidth, Gap, gfx.ScreenWidth-TriWidth-Gap, Gap+TriWidth, GetColor(topFactor));
 	//top bottom rect
-	Rect(Gap + 2*TriWidth, Gap + TriWidth, gfx.ScreenWidth - 2*TriWidth - Gap, Gap + 2*TriWidth, LL);
+	Rect(Gap + 2*TriWidth, Gap + TriWidth, gfx.ScreenWidth - 2*TriWidth - Gap, Gap + 2*TriWidth, GetColor(bottomFactor));
 	//right top left tri
-	TriLDL(GetLoc(gfx.ScreenWidth-Gap-TriWidth, Gap), LR);
+	TriLDL(GetLoc(gfx.ScreenWidth-Gap-TriWidth, Gap), GetColor(topFactor));
 	//right top left left tri
-	TriLDL(GetLoc(gfx.ScreenWidth - Gap - 2*TriWidth, Gap+TriWidth), LR);
+	TriLDL(GetLoc(gfx.ScreenWidth - Gap - 2*TriWidth, Gap+TriWidth), GetColor(bottomFactor));
 
 }
 
@@ -104,4 +104,13 @@ Location & Frame::GetLoc(int x, int y)
 {
 	Location loc(x, y);
 	return loc;
+}
+
+Color Frame::GetColor(float factor)
+{
+	float R =float (BaseC.GetR()) * factor;
+	float G =float (BaseC.GetB()) * factor;
+	float B =float (BaseC.GetG()) * factor;
+	Color c2= Color( (int) R, (int) G,(int) B );
+	return c2;
 }

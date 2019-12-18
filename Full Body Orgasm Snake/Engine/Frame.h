@@ -12,6 +12,7 @@ public:
 	void TriLDL2(Location& loc, Color& c);
 	void Rect(int x, int y, int x1, int y1, Color& c);
 	Location& GetLoc(int x, int y);
+	Color GetColor(float factor);
 private:
 	static constexpr int Gap = 40; // lit.: space from left screen to right of the border 
 	static constexpr int Width = 14;
@@ -21,7 +22,7 @@ private:
 	static constexpr float topFactor = 0.93f;
 	static constexpr float bottomFactor = 0.80f;
 	static constexpr float rightFactor = 0.65f;
-	Color BaseC = { 160.0f, 160.0f, 160.0f };
+	Color BaseC = { 160, 160, 160 };
 	Graphics&gfx;
 
 };
