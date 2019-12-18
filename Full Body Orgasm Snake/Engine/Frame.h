@@ -9,14 +9,19 @@ public:
 	void TriLTL(Location& loc, Color& c); // top left side triangle Left (touching the left side)
 	void TriLTL2(Location& loc, Color& c);
 	void TriLDL(Location& loc, Color& c);
-	void Rect(Location& loc, Location & loc1, Color& c);
+	void TriLDL2(Location& loc, Color& c);
+	void Rect(int x, int y, int x1, int y1, Color& c);
+	Location& GetLoc(int x, int y);
 private:
 	static constexpr int Gap = 40; // lit.: space from left screen to right of the border 
 	static constexpr int Width = 14;
 	static constexpr int TriWidth = Width /2;
-	Color c = {211,211,211};
-	Color LL = { 160, 160, 160 }; //left left
-	Color LR = { 96 ,96 ,96 }; //left right
+
+	static constexpr float leftFactor = 1.10f;
+	static constexpr float topFactor = 0.93f;
+	static constexpr float bottomFactor = 0.80f;
+	static constexpr float rightFactor = 0.65f;
+	Color BaseC = { 160.0f, 160.0f, 160.0f };
 	Graphics&gfx;
 
 };
