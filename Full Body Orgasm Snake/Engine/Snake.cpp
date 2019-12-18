@@ -44,7 +44,7 @@ void Snake::Update(const Location & dl) // the guy that calls everything since h
 	if (seg[0].ControltheHead(brd, dl) == Board::Content::Fruit) // this guy gets some exlusive shit
 	{
 		nSegments++;
-		if (nColour == 5) // controling the color array
+		if (nColour == nColourMax) // controling the color array
 			nColour = 0;
 		else
 		nColour++;

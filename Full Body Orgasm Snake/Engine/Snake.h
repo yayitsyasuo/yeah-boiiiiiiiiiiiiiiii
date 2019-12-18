@@ -33,15 +33,13 @@ private:
 	static constexpr int segMax=100;
 	int nSegments=1;
 	Segment seg[segMax];
-	Color c[6]{
-		{255,255,255},
-		{224,224,224},
-		{192,192,192},
-		{160,160,160},
-		{128,128,128},
-		{96,96,96}
+	Color c[14]{
+		{255,255,255},{224,224,224},{192,192,192},{160,160,160},{128,128,128},
+		{96,96,96},{64,64,64},{32,32,32},{64,64,64},{96,96,96},{128,128,128},
+		{160,160,160},{192,192,192},{224,224,224}
 	};
 	int nColour=0;
+	static constexpr int nColourMax = 13; // last element in the array
 	Color HeadC = Colors::White;
 	bool justonce = true;
 	 // Board brd; NO! it'd be different object than the relevant one

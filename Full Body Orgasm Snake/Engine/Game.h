@@ -55,7 +55,7 @@ private:
 	Location dloc = {1,0};
 	FrameTimer ft;
 	float dtSum = 0.0f;
-	static constexpr float dtSumLimit= 5.0f;
+	static constexpr float dtSumLimit= 0.1f;
 	static constexpr int nFruits = 3;
 	Color c = Colors::Red;
 	Frame f;
