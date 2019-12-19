@@ -29,8 +29,8 @@ void Board::SpawnContent(const Location& loc, const Content content)
 
 void Board::SpawnFeature(std::mt19937& rnd, const Content content)
 {
-	std::uniform_int_distribution<int> Xdist(0, Columns);
-	std::uniform_int_distribution<int> Ydist(0, Rows);
+	std::uniform_int_distribution<int> Xdist(1, Columns-1);
+	std::uniform_int_distribution<int> Ydist(1, Rows-1);
 
 	Location newLoc(Xdist(rnd), Ydist(rnd));
 	Board1D[newLoc.y * Columns + newLoc.x] = content;

@@ -25,6 +25,7 @@ public:
 	Snake(const Location& in, Board& brd);
 	void Draw(); // Board brd; NO! it'd be different object than the relevant one
 	void Update(const Location& dl);
+	bool GetGameOver();
 //	void SpawnSegment(Board& brd);
 //	void Follow(Board& brd);
 private:
@@ -41,6 +42,8 @@ private:
 	int nColour=0;
 	static constexpr int nColourMax = 13; // last element in the array
 	Color HeadC = Colors::White;
+	Color ObstacleC = Colors::LightGray;
+	bool GameOver = false;
 	bool justonce = true;
 	 // Board brd; NO! it'd be different object than the relevant one
 	// Board brd; don't fucking use it 

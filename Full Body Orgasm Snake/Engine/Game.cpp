@@ -45,50 +45,53 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	const float dt= ft.MarkT();
+	if (!snake.GetGameOver())
+	{
+		const float dt = ft.MarkT();
 
-	if (wnd.kbd.KeyIsPressed(0x41)) // A
-	{
-		if (r == Richtung::right)
+		if (wnd.kbd.KeyIsPressed(0x41)) // A
 		{
+			if (r == Richtung::right)
+			{
+			}
+			else {
+				dloc = { -1,0 };
+				r = Richtung::left;
+			}
 		}
-		else {
-			dloc = { -1,0 };
-			r = Richtung::left;
-		}
-	}
-	if (wnd.kbd.KeyIsPressed(0x44)) // D
-		if (r == Richtung::left)
+		if (wnd.kbd.KeyIsPressed(0x44)) // D
+			if (r == Richtung::left)
+			{
+			}
+			else {
+				dloc = { 1,0 };
+				r = Richtung::right;
+			}
+		if (wnd.kbd.KeyIsPressed(0x57)) // W
+			if (r == Richtung::down)
+			{
+			}
+			else {
+				dloc = { 0,-1 };
+				r = Richtung::up;
+			}
+		if (wnd.kbd.KeyIsPressed(0x53)) // S
 		{
+			if (r == Richtung::up)
+			{
+			}
+			else {
+				dloc = { 0, 1 };
+				r = Richtung::down;
+			}
 		}
-		else {
-			dloc = { 1,0 };
-			r = Richtung::right;
-		}
-	if (wnd.kbd.KeyIsPressed(0x57)) // W
-		if (r == Richtung::down)
-		{
-		}
-		else {
-			dloc = { 0,-1 };
-			r = Richtung::up;
-		}
-	if (wnd.kbd.KeyIsPressed(0x53)) // S
-	{
-		if (r == Richtung::up)
-		{
-		}
-		else {
-			dloc = { 0, 1 };
-			r = Richtung::down;
-		}
-	}
 
-	dtSum += dt;
-	if (dtSum > dtSumLimit)
-	{
-		dtSum -= dtSum;
-		snake.Update(dloc);
+		dtSum += dt;
+		if (dtSum > dtSumLimit)
+		{
+			dtSum -= dtSum;
+			snake.Update(dloc);
+		}
 	}
 }
 

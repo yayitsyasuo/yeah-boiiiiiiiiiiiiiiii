@@ -10,7 +10,8 @@ public:
 		Nothing,
 		Snake,
 		Fruit,
-		Head
+		Head,
+		Obstacle
 	};
 public:
 	Board(Graphics& gfx);
