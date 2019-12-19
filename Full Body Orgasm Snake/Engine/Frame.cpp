@@ -34,13 +34,36 @@ void Frame::DrawAlles()
 	TriLDL(GetLoc(gfx.ScreenWidth-Gap-TriWidth, Gap), GetColor(topFactor));
 	//right top left left tri
 	TriLDL(GetLoc(gfx.ScreenWidth - Gap - 2*TriWidth, Gap+TriWidth), GetColor(bottomFactor));
+	//right top right right
+	//right top right right bottom
+	TriLDL2(GetLoc(gfx.ScreenWidth - Gap , Gap), GetColor(rightFactor));
+	TriLDL2(GetLoc(gfx.ScreenWidth - Gap - TriWidth, Gap + TriWidth), GetColor(leftFactor));
+	//right right rect
+	Rect(gfx.ScreenWidth - Gap - 2 * TriWidth, Gap + 2 * TriWidth, gfx.ScreenWidth - Gap - TriWidth, gfx.ScreenHeight - Gap - 2 * TriWidth, GetColor(leftFactor));
+	//right left reect
+	Rect(gfx.ScreenWidth - Gap - TriWidth, Gap + TriWidth, gfx.ScreenWidth - Gap, gfx.ScreenHeight - Gap -  TriWidth, GetColor(rightFactor));
 
+	//left bottom left left
+	TriLDL2(GetLoc(Gap+TriWidth, gfx.ScreenHeight - Gap- TriWidth), GetColor(bottomFactor));
+	TriLDL2(GetLoc(Gap+ 2*TriWidth, gfx.ScreenHeight - Gap - 2*TriWidth), GetColor(topFactor));
+
+	//right bottom right right
+	TriLTL2(GetLoc(gfx.ScreenWidth - Gap - TriWidth, gfx.ScreenHeight - Gap - TriWidth), GetColor(rightFactor));
+	TriLTL2(GetLoc(gfx.ScreenWidth - Gap - 2 * TriWidth, gfx.ScreenHeight - Gap - 2 * TriWidth), GetColor(leftFactor));
+	//right bottom left
+	TriLTL(GetLoc(gfx.ScreenWidth - Gap - TriWidth, gfx.ScreenHeight - Gap - TriWidth), GetColor(bottomFactor));
+	TriLTL(GetLoc(gfx.ScreenWidth - Gap - 2*TriWidth, gfx.ScreenHeight - Gap - 2*TriWidth), GetColor(topFactor));
+
+	//bottom top rect
+	Rect(Gap + 2 * TriWidth, gfx.ScreenHeight - Gap - 2 * TriWidth, gfx.ScreenWidth - Gap - 2 * TriWidth, gfx.ScreenHeight - TriWidth - Gap, GetColor(topFactor));
+	//bottom bottom rect
+	Rect(Gap+TriWidth, gfx.ScreenHeight-Gap-TriWidth, gfx.ScreenWidth-Gap-TriWidth, gfx.ScreenHeight - Gap, GetColor(bottomFactor));
 }
 
 void Frame::TriLTL(Location& loc, Color& c)
 {
 	int SelfControl=0;
-	for (int y=loc.y ; y <= loc.y + TriWidth; y++)
+	for (int y=loc.y ; y < loc.y + TriWidth; y++)
 	{
 		SelfControl++;
 		for (int x=loc.x; x < loc.x + SelfControl; x++)
@@ -54,13 +77,13 @@ void Frame::TriLTL(Location& loc, Color& c)
 
 void Frame::TriLTL2(Location& loc, Color& c)
 {
-	int SelfControl = 0;
+	int SelfControl = -1;
 	for (int y = loc.y; y < loc.y + TriWidth; y++)
 	{
 		SelfControl++;
-		for (int x = loc.x; x < loc.x + SelfControl; x++)
+		for (int x = loc.x+SelfControl; x < loc.x+TriWidth; x++)
 		{
-			gfx.PutPixel(y, x, c);
+			gfx.PutPixel(x, y, c);
 		}
 	}
 }
@@ -71,7 +94,7 @@ void Frame::TriLDL(Location & loc, Color& c)
 	for (int y = loc.y; y <= loc.y + TriWidth; y++)
 	{
 		SelfControl--;
-		for (int x = loc.x; x <= loc.x + SelfControl; x++)
+		for (int x = loc.x; x < loc.x + SelfControl; x++)
 		{
 			gfx.PutPixel(x, y, c);
 			// gfx.PutPixel(int(Y), int(X), Colors::Blue); MAKES THE OTHER HALF OF THE TRIANGLE c:
@@ -82,13 +105,13 @@ void Frame::TriLDL(Location & loc, Color& c)
 
 void Frame::TriLDL2(Location & loc, Color& c)
 {
-	int SelfControl = TriWidth + 1;
+	int SelfControl = 0;
 	for (int y = loc.y; y < loc.y + TriWidth; y++)
 	{
-		SelfControl--;
-		for (int x = loc.x; x < loc.x + SelfControl; x++)
+		SelfControl++;
+		for (int x = loc.x - 1; x > loc.x - SelfControl; x--)
 		{
-			gfx.PutPixel(y, x, c);
+			gfx.PutPixel(x, y, c);
 			// gfx.PutPixel(int(Y), int(X), Colors::Blue); MAKES THE OTHER HALF OF THE TRIANGLE c:
 		}
 
