@@ -57,8 +57,9 @@ void Snake::Update(const Location & dl) // the guy that calls everything since h
 		brd.SpawnFeature(rnd, Board::Content::Fruit);
 		brd.SpawnFeature(rnd, Board::Content::Obstacle); // obstacles spawned here
 		break;
-	//what happens when you run on an obstacle
-	case Board::Content::Obstacle: // this guy gets some exlusive shit
+	//what happens when you run on an obstacle / Snake
+		case Board::Content::Obstacle:
+		case Board::Content::Snake:// this guy gets some exlusive shit
 		GameOver = true;
 		break;
 	}
@@ -86,8 +87,12 @@ Board::Content Snake::Segment::ControltheHead(Board & brd, const Location & dl) 
 		return Board::Content::Fruit;
 		break; //fukin break man
 	case Board::Content::Obstacle:
-		ContentUpdate(brd, newLoc, Board::Content::Obstacle);
+		ContentUpdate(brd, newLoc, Board::Content::Head);
 		return Board::Content::Obstacle;
+		break;
+	case Board::Content::Snake:
+		ContentUpdate(brd, newLoc, Board::Content::Head);
+		return Board::Content::Snake;
 		break;
 	default:
 		ContentUpdate(brd, newLoc, Board::Content::Head);
