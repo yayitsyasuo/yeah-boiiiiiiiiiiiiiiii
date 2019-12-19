@@ -40,7 +40,7 @@ void Frame::DrawAlles()
 void Frame::TriLTL(Location& loc, Color& c)
 {
 	int SelfControl=0;
-	for (int y=loc.y; y <= loc.y + TriWidth; y++)
+	for (int y=loc.y ; y <= loc.y + TriWidth; y++)
 	{
 		SelfControl++;
 		for (int x=loc.x; x < loc.x + SelfControl; x++)
@@ -100,7 +100,7 @@ void Frame::Rect(int x, int y, int x1, int y1, Color & c)
 	gfx.DrawRect(x, y, x1 , y1 , c);
 }
 
-Location & Frame::GetLoc(int x, int y)
+Location Frame::GetLoc(int x, int y)
 {
 	Location loc(x, y);
 	return loc;

@@ -11,7 +11,7 @@ public:
 	void TriLDL(Location& loc, Color& c);
 	void TriLDL2(Location& loc, Color& c);
 	void Rect(int x, int y, int x1, int y1, Color& c);
-	Location& GetLoc(int x, int y);
+	Location GetLoc(int x, int y);
 	Color GetColor(float factor);
 private:
 	static constexpr int Gap = 40; // lit.: space from left screen to right of the border 

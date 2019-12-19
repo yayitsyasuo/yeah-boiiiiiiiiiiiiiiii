@@ -87,10 +87,11 @@ void Game::UpdateModel()
 		}
 
 		dtSum += dt;
-		if (dtSum > dtSumLimit)
+		if (dtSum > dtSumLimit) // dtSum controls the speed
 		{
 			dtSum -= dtSum;
 			snake.Update(dloc);
+			dtSumLimit = dtSumLimit - 0.00015; // speeding up
 		}
 	}
 }
