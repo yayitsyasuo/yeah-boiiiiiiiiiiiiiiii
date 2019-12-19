@@ -44,8 +44,9 @@ void Snake::Update(const Location & dl) // the guy that calls everything since h
 
 	// big guy obsticle update here
 	
-	if (seg[0].ControltheHead(brd, dl) == Board::Content::Fruit) // this guy gets some exlusive shit
+	switch(seg[0].ControltheHead(brd, dl)) // this guy gets some exlusive shit
 	{
+	case Board::Content::Fruit:
 		nSegments++;
 		if (nColour == nColourMax) // controling the color array
 			nColour = 0;
@@ -55,11 +56,11 @@ void Snake::Update(const Location & dl) // the guy that calls everything since h
 	// New Food init here
 		brd.SpawnFeature(rnd, Board::Content::Fruit);
 		brd.SpawnFeature(rnd, Board::Content::Obstacle); // obstacles spawned here
-	}
+		break;
 	//what happens when you run on an obstacle
-	if (seg[0].ControltheHead(brd, dl) == Board::Content::Obstacle) // this guy gets some exlusive shit
-	{
+	case Board::Content::Obstacle: // this guy gets some exlusive shit
 		GameOver = true;
+		break;
 	}
 }
 
@@ -83,12 +84,15 @@ Board::Content Snake::Segment::ControltheHead(Board & brd, const Location & dl) 
 	case Board::Content::Fruit:
 		ContentUpdate(brd, newLoc, Board::Content::Head);
 		return Board::Content::Fruit;
+		break; //fukin break man
 	case Board::Content::Obstacle:
 		ContentUpdate(brd, newLoc, Board::Content::Obstacle);
 		return Board::Content::Obstacle;
+		break;
 	default:
 		ContentUpdate(brd, newLoc, Board::Content::Head);
 		return Board::Content::Nothing;
+		break;
 	}
 }
 
