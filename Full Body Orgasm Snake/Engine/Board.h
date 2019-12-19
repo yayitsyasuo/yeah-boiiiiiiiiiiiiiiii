@@ -11,7 +11,8 @@ public:
 		Snake,
 		Fruit,
 		Head,
-		Obstacle
+		Obstacle,
+		Mixture
 	};
 public:
 	Board(Graphics& gfx);

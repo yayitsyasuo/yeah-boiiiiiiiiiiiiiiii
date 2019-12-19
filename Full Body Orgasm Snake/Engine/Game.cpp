@@ -86,12 +86,17 @@ void Game::UpdateModel()
 			}
 		}
 
+		if (snake.Drugged)
+		{
+			dtSumLimit = 1.0f;
+			snake.Drugged = false;
+		}
 		dtSum += dt;
 		if (dtSum > dtSumLimit) // dtSum controls the speed
 		{
 			dtSum -= dtSum;
 			snake.Update(dloc);
-			dtSumLimit = dtSumLimit - 0.00015; // speeding up
+			dtSumLimit = dtSumLimit - 0.0002f; // speeding up
 		}
 	}
 }

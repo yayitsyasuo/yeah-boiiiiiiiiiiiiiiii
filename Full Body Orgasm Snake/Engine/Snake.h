@@ -26,6 +26,8 @@ public:
 	void Draw(); // Board brd; NO! it'd be different object than the relevant one
 	void Update(const Location& dl);
 	bool GetGameOver();
+	bool GetDrugged();
+	bool Drugged = false;
 //	void SpawnSegment(Board& brd);
 //	void Follow(Board& brd);
 private:
@@ -33,6 +35,7 @@ private:
 	Board& brd;
 	static constexpr int segMax=100;
 	int nSegments=1;
+	int GoalsEaten = 1;
 	Segment seg[segMax];
 	Color c[14]{
 		{255,255,255},{224,224,224},{192,192,192},{160,160,160},{128,128,128},

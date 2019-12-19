@@ -17,13 +17,17 @@ void Snake::Draw()
 {
 
 	// for(Segment&s : seg)
+
+	// OPTIMALIZE THIS PLS
 	seg[0].Draw(brd, c[nColour], Board::Content::Snake);
 	seg[0].Draw(brd, HeadC, Board::Content::Head); // head has got some exclusive shit yeah
 	seg[0].Draw(brd, ObstacleC ,Board::Content::Obstacle);
+	seg[0].Draw(brd, Colors::Green, Board::Content::Mixture);
 }
 
 void Snake::Update(const Location & dl) // the guy that calls everything since he's being called in Game.cpp
 {
+	
 	if (!justonce) { // Graphics aren't yet initialized to Draw shit in initializer
 
 		for (int i = nSegments; i > 0; --i)
@@ -44,9 +48,16 @@ void Snake::Update(const Location & dl) // the guy that calls everything since h
 
 	// big guy obsticle update here
 	
+	if (GoalsEaten % 7 == 0 )
+	{
+		brd.SpawnFeature(rnd, Board::Content::Mixture);
+		GoalsEaten = 1;
+	}
+
 	switch(seg[0].ControltheHead(brd, dl)) // this guy gets some exlusive shit
 	{
 	case Board::Content::Fruit:
+		GoalsEaten++;
 		nSegments++;
 		if (nColour == nColourMax) // controling the color array
 			nColour = 0;
@@ -62,12 +73,21 @@ void Snake::Update(const Location & dl) // the guy that calls everything since h
 		case Board::Content::Snake:// this guy gets some exlusive shit
 		GameOver = true;
 		break;
+		// when you run on a mixture
+		case Board::Content::Mixture:
+		Drugged = true;
+		break;
 	}
 }
 
 bool Snake::GetGameOver()
 {
 	return GameOver;
+}
+
+bool Snake::GetDrugged()
+{
+	return Drugged;
 }
 
 void Snake::Segment::LastContentUpdate(Board& brd, const Location & previous_loc)
