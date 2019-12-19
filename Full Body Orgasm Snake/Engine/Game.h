@@ -33,6 +33,12 @@
 class Game
 {
 public:
+	enum class Richtung {
+		right,
+		left,
+		up,
+		down
+	};
 	Game( class MainWindow& wnd );
 	Game( const Game& ) = delete;
 	Game& operator=( const Game& ) = delete;
@@ -55,6 +61,7 @@ private:
 	Location dloc = {1,0};
 	FrameTimer ft;
 	float dtSum = 0.0f;
+	Richtung r{ Richtung::right };
 	static constexpr float dtSumLimit= 0.1f;
 	static constexpr int nFruits = 3;
 	Color c = Colors::Red;

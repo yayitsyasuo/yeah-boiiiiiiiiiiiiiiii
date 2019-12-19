@@ -48,13 +48,41 @@ void Game::UpdateModel()
 	const float dt= ft.MarkT();
 
 	if (wnd.kbd.KeyIsPressed(0x41)) // A
-		dloc = {-1,0};
+	{
+		if (r == Richtung::right)
+		{
+		}
+		else {
+			dloc = { -1,0 };
+			r = Richtung::left;
+		}
+	}
 	if (wnd.kbd.KeyIsPressed(0x44)) // D
-		dloc = { 1,0 };
+		if (r == Richtung::left)
+		{
+		}
+		else {
+			dloc = { 1,0 };
+			r = Richtung::right;
+		}
 	if (wnd.kbd.KeyIsPressed(0x57)) // W
-		dloc = { 0,-1 };
+		if (r == Richtung::down)
+		{
+		}
+		else {
+			dloc = { 0,-1 };
+			r = Richtung::up;
+		}
 	if (wnd.kbd.KeyIsPressed(0x53)) // S
-		dloc = { 0, 1 };
+	{
+		if (r == Richtung::up)
+		{
+		}
+		else {
+			dloc = { 0, 1 };
+			r = Richtung::down;
+		}
+	}
 
 	dtSum += dt;
 	if (dtSum > dtSumLimit)
