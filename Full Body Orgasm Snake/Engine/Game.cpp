@@ -98,6 +98,17 @@ void Game::UpdateModel()
 			snake.Update(dloc);
 			dtSumLimit = dtSumLimit - 0.0002f; // speeding up
 		}
+		// FRAME STUFF
+		for (int y = 2; y <= 28; y++) // left /right side
+		{
+			brd.SpawnContent(Location(2, y), Board::Content::Wall);
+			brd.SpawnContent(Location(37, y), Board::Content::Wall);
+		}
+		for (int x = 2; x <= 37; x++) // left /right side
+		{
+			brd.SpawnContent(Location(x, 1), Board::Content::Wall);
+			brd.SpawnContent(Location(x, 26), Board::Content::Wall);
+		}
 	}
 }
 

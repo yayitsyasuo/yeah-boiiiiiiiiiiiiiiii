@@ -12,7 +12,8 @@ public:
 		Fruit,
 		Head,
 		Obstacle,
-		Mixture
+		Mixture,
+		Wall
 	};
 public:
 	Board(Graphics& gfx);

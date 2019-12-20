@@ -71,6 +71,7 @@ void Snake::Update(const Location & dl) // the guy that calls everything since h
 	//what happens when you run on an obstacle / Snake
 		case Board::Content::Obstacle:
 		case Board::Content::Snake:// this guy gets some exlusive shit
+		case Board::Content::Wall:
 		GameOver = true;
 		break;
 	// when you run on a mixture
@@ -112,6 +113,10 @@ Board::Content Snake::Segment::ControltheHead(Board & brd, const Location & dl) 
 	case Board::Content::Mixture:
 		ContentUpdate(brd, newLoc, Board::Content::Head);
 		return Board::Content::Mixture;
+		break;
+	case Board::Content::Wall:
+		ContentUpdate(brd, newLoc, Board::Content::Head);
+		return Board::Content::Wall;
 		break;
 	default:
 		ContentUpdate(brd, newLoc, Board::Content::Head);
