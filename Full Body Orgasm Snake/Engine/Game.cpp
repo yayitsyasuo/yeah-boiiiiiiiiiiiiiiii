@@ -88,7 +88,7 @@ void Game::UpdateModel()
 
 		if (snake.Drugged)
 		{
-			dtSumLimit = 1.0f;
+			dtSumLimit = 0.09f;
 			snake.Drugged = false;
 		}
 		dtSum += dt;

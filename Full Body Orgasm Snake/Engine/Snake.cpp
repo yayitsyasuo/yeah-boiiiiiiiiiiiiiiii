@@ -73,7 +73,7 @@ void Snake::Update(const Location & dl) // the guy that calls everything since h
 		case Board::Content::Snake:// this guy gets some exlusive shit
 		GameOver = true;
 		break;
-		// when you run on a mixture
+	// when you run on a mixture
 		case Board::Content::Mixture:
 		Drugged = true;
 		break;
@@ -83,11 +83,6 @@ void Snake::Update(const Location & dl) // the guy that calls everything since h
 bool Snake::GetGameOver()
 {
 	return GameOver;
-}
-
-bool Snake::GetDrugged()
-{
-	return Drugged;
 }
 
 void Snake::Segment::LastContentUpdate(Board& brd, const Location & previous_loc)
@@ -114,10 +109,15 @@ Board::Content Snake::Segment::ControltheHead(Board & brd, const Location & dl) 
 		ContentUpdate(brd, newLoc, Board::Content::Head);
 		return Board::Content::Snake;
 		break;
+	case Board::Content::Mixture:
+		ContentUpdate(brd, newLoc, Board::Content::Head);
+		return Board::Content::Mixture;
+		break;
 	default:
 		ContentUpdate(brd, newLoc, Board::Content::Head);
 		return Board::Content::Nothing;
 		break;
+	
 	}
 }
 

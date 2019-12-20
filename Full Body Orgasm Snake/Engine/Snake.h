@@ -26,7 +26,6 @@ public:
 	void Draw(); // Board brd; NO! it'd be different object than the relevant one
 	void Update(const Location& dl);
 	bool GetGameOver();
-	bool GetDrugged();
 	bool Drugged = false;
 //	void SpawnSegment(Board& brd);
 //	void Follow(Board& brd);
