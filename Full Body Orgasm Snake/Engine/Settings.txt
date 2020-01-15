@@ -1,0 +1,5 @@
+Tile size
+20
+
+Poison amount
+5

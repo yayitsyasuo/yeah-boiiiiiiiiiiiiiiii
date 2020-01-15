@@ -1,12 +1,28 @@
 #include "Board.h"
 #include <assert.h>
 #include <random>
+#include <fstream>
 
 Board::Board(Graphics& gfx)
 	:
 	gfx(gfx),
 	rnd(std::random_device()())
 {
+	std::ifstream in("Settings.txt");
+	std::string str;
+	std::getline(in, str);
+	int colorado = str.find("Tile size");
+	while (colorado == std::string::npos)
+	{
+		std::getline(in, str);
+		colorado = str.find("Tile size");
+	}
+	//////////// str = Tile Size //////////
+	std::getline(in, str);
+
+	dimension = std::stoi(str);
+
+
 	for(int i = 0 ; i < nPoison ; i++)
 	SpawnFeature(rnd, Content::Poison);
 }
