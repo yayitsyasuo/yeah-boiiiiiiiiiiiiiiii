@@ -56,6 +56,9 @@ void Snake::Update(const Location & dl) // the guy that calls everything since h
 
 	switch(seg[0].ControltheHead(brd, dl)) // this guy gets some exlusive shit
 	{
+	case Board::Content::Poison:
+		SpeedMeUp = true;
+		break;
 	case Board::Content::Fruit:
 		GoalsEaten++;
 		nSegments++;
@@ -64,6 +67,7 @@ void Snake::Update(const Location & dl) // the guy that calls everything since h
 		else
 		nColour++;
 		seg[nSegments].Init(seg[nSegments - 1].GetLoc());
+		SpeedMeUp = true; // cringe method
 	// New Food init here
 		brd.SpawnFeature(rnd, Board::Content::Fruit);
 		brd.SpawnFeature(rnd, Board::Content::Obstacle); // obstacles spawned here

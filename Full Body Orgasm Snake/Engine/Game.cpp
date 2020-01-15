@@ -88,7 +88,7 @@ void Game::UpdateModel()
 
 		if (snake.Drugged)
 		{
-			dtSumLimit = 0.09f;
+			dtSumLimit += 0.05f;
 			snake.Drugged = false;
 		}
 		dtSum += dt;
@@ -96,6 +96,11 @@ void Game::UpdateModel()
 		{
 			dtSum -= dtSum;
 			snake.Update(dloc);
+			if (snake.SpeedMeUp) // cringe method but w/e
+			{
+				dtSumLimit -= 0.0005f;
+				snake.SpeedMeUp = false;
+			}
 			dtSumLimit = dtSumLimit - 0.0002f; // speeding up
 		}
 		// FRAME STUFF

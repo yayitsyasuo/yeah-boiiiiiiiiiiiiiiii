@@ -23,6 +23,7 @@ public:
 	void Update(const Location& dl);
 	bool GetGameOver();
 	bool Drugged = false;
+	bool SpeedMeUp = false;
 private:
 	std::mt19937 rnd;
 	Board& brd;
