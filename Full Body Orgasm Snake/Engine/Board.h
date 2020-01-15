@@ -22,12 +22,12 @@ public:
 	void SpawnContent(const Location& loc,const Content content);
 	void SpawnFeature(std::mt19937& rnd, const Content content );
 	void EmptyContent(const Location& loc);
-	Content ContentCheck(int x, int y);
+	Content ContentCheck(const Location & loc);
 public:
 	static int constexpr Columns = 39; // 760 / 20; //38
 	static int constexpr Rows = 29; // 560 / 20; //28
 	static int constexpr dimension = 20;
-	static int constexpr nPoison = 100;
+	static int constexpr nPoison = 200;
 	 // static int constexpr SnakeDimension = 19; padding is inside Graphics !
 	Content Board1D[Columns*Rows] = {Content::Nothing}; //2d array- big guy
 	Graphics& gfx;

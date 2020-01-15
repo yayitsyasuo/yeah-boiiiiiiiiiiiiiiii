@@ -18,11 +18,11 @@ private:
 	static constexpr int Width = 14;
 	static constexpr int TriWidth = Width /2;
 
-	static constexpr float leftFactor = 1.10f;
+	static constexpr float leftFactor = 1.10f; //1,10
 	static constexpr float topFactor = 0.93f;
 	static constexpr float bottomFactor = 0.80f;
 	static constexpr float rightFactor = 0.65f;
-	Color BaseC = { 160, 160, 160 };
+	Color BaseC = { 96,96,96 };
 	Graphics&gfx;
 
 };

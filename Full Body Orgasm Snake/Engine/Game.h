@@ -54,6 +54,7 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	void SpeedUp();
 	/********************************/
 	Snake snake;
 	Board brd;
@@ -62,9 +63,9 @@ private:
 	FrameTimer ft;
 	float dtSum = 0.0f;
 	Richtung r { Richtung::right };
-	float dtSumLimit= 0.1f; 
+	float dtSumLimit= 0.15f; 
 	static constexpr int nFruits = 3;
 	Color c = Colors::Red;
-	Color cPoison = Colors::MakeRGB(186, 85, 211);
+	Color cPoison = Colors::MakeRGB(102,0,102);
 	Frame f;
 };

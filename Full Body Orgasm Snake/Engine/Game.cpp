@@ -112,6 +112,11 @@ void Game::UpdateModel()
 	}
 }
 
+void Game::SpeedUp()
+{
+	dtSumLimit -= 0.05f;
+}
+
 void Game::ComposeFrame()
 {
 	snake.Draw();

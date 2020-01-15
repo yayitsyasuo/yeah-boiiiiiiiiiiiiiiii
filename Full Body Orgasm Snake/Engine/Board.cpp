@@ -17,7 +17,7 @@ void Board::DrawCells(Color c, Content content)
 	{
 		for (int x = 0; x < Columns; x++) // <= made an error nice
 		{
-			if (ContentCheck(x, y) == content)
+			if (ContentCheck(Location(x,y)) == content)
 			{
 				gfx.DrawCell(x, y, c, dimension); // padding is inside Graphics
 			}
@@ -33,11 +33,15 @@ void Board::SpawnContent(const Location& loc, const Content content)
 
 void Board::SpawnFeature(std::mt19937& rnd, const Content content)
 {
-	std::uniform_int_distribution<int> Xdist(3, Columns-4);
-	std::uniform_int_distribution<int> Ydist(3, Rows-4);
-
+	std::uniform_int_distribution<int> Xdist(2, Columns-3);
+	std::uniform_int_distribution<int> Ydist(2, Rows-3);
 	Location newLoc(Xdist(rnd), Ydist(rnd));
-	Board1D[newLoc.y * Columns + newLoc.x] = content;
+	
+	while (ContentCheck(newLoc) != Content::Nothing)
+	{
+		newLoc = Location (Xdist(rnd), Ydist(rnd));
+	} 
+	SpawnContent(newLoc, content);
 }
 
 void Board::EmptyContent(const Location & loc)
@@ -45,11 +49,11 @@ void Board::EmptyContent(const Location & loc)
 	Board1D[loc.y * Columns + loc.x] = Content::Nothing;
 }
 
-Board::Content Board::ContentCheck(int x, int y)
+Board::Content Board::ContentCheck(const Location & loc)
 {
-	//assert(y >= 0);
-	assert(x >= 0);
-	return Board1D[y*Columns + x];
+	assert(loc.x >= 0);
+	assert(loc.y >= 0);
+	return Board1D[loc.y * Columns + loc.x];
 }
 
 

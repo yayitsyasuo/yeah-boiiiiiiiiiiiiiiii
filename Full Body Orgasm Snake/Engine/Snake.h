@@ -29,16 +29,18 @@ private:
 	static constexpr int segMax=100;
 	int nSegments=1;
 	int GoalsEaten = 1;
+	static constexpr int nColourMax = 12;
 	Segment seg[segMax];
-	Color c[14]{
-		{255,255,255},{224,224,224},{192,192,192},{160,160,160},{128,128,128},
-		{96,96,96},{64,64,64},{32,32,32},{64,64,64},{96,96,96},{128,128,128},
-		{160,160,160},{192,192,192},{224,224,224}
+	Color c[nColourMax+1]{
+		{204,255,229},{153,255,204},{102,255,178},
+		{51,255,153},{0,255,128},{0,204,102},	
+		{0,153,76},{0,204,102},{0,255,128},
+		{51,255,153},{102,255,178},{153,255,204},
+		{204,255,229}
 	};
 	int nColour=0;
-	static constexpr int nColourMax = 13; // last element in the array
-	Color HeadC = Colors::White;
-	Color ObstacleC = Colors::LightGray;
+	Color HeadC = Colors::MakeRGB(255, 255, 0);
+	Color ObstacleC = Colors::MakeRGB(128, 128, 128);
 	bool GameOver = false;
 	bool justonce = true;
 	 // Board brd; NO! it'd be different object than the relevant one

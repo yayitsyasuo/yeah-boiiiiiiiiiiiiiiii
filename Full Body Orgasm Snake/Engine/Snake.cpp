@@ -97,7 +97,11 @@ Board::Content Snake::Segment::ControltheHead(Board & brd, const Location & dl) 
 {
 	Location newLoc = loc + dl;
 
-	switch (brd.ContentCheck(newLoc.x, newLoc.y)) {
+	switch (brd.ContentCheck(newLoc)) {
+	case Board::Content::Poison:
+		ContentUpdate(brd, newLoc, Board::Content::Head);
+		return Board::Content::Poison;
+		break;
 	case Board::Content::Fruit:
 		ContentUpdate(brd, newLoc, Board::Content::Head);
 		return Board::Content::Fruit;
