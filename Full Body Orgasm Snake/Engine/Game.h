@@ -65,5 +65,6 @@ private:
 	float dtSumLimit= 0.1f; 
 	static constexpr int nFruits = 3;
 	Color c = Colors::Red;
+	Color cPoison = Colors::MakeRGB(186, 85, 211);
 	Frame f;
 };

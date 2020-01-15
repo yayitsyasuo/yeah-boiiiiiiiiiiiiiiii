@@ -116,5 +116,6 @@ void Game::ComposeFrame()
 {
 	snake.Draw();
 	brd.DrawCells(c, Board::Content::Fruit);
+	brd.DrawCells(cPoison, Board::Content::Poison);
 	f.DrawAlles();
 }

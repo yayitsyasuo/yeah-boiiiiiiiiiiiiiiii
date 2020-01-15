@@ -10,25 +10,19 @@ public:
 			void Init(const Location& loc);
 			void Draw(Board& brd, Color c, Board::Content content);
 			void LastContentUpdate( Board& brd, const Location& dl);
-		//	void SpawnSeg(Board& brd);
-		//	void Follow(Board& brd, const Location& l);
 			Board::Content ControltheHead(Board& brd, const Location & dl);
 			void ContentUpdate(Board& brd, const Location & dl,const Board::Content content);
 			const Location& GetLoc() const;
 		private:
-			Location loc; // used to have its own constructor hence the error- Segment would always have to do?
-						//alright it needs to have my normal fucking constructor
-						  // default constructor changed it all cool
+			Location loc;
 
 	};
 public:
 	Snake(const Location& in, Board& brd);
-	void Draw(); // Board brd; NO! it'd be different object than the relevant one
+	void Draw();
 	void Update(const Location& dl);
 	bool GetGameOver();
 	bool Drugged = false;
-//	void SpawnSegment(Board& brd);
-//	void Follow(Board& brd);
 private:
 	std::mt19937 rnd;
 	Board& brd;

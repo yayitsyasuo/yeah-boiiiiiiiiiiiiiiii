@@ -1,10 +1,14 @@
 #include "Board.h"
 #include <assert.h>
+#include <random>
 
 Board::Board(Graphics& gfx)
 	:
-	gfx(gfx)
+	gfx(gfx),
+	rnd(std::random_device()())
 {
+	for(int i = 0 ; i < nPoison ; i++)
+	SpawnFeature(rnd, Content::Poison);
 }
 
 void Board::DrawCells(Color c, Content content)
