@@ -24,3 +24,13 @@ int GameSettings::GetTileSize() const
 {
 	return TileSize;
 }
+
+int GameSettings::GetBoardSizeX() const
+{
+	return BoardSizeX;
+}
+
+int GameSettings::GetBoardSizeY() const
+{
+	return BoardSizeY;
+}

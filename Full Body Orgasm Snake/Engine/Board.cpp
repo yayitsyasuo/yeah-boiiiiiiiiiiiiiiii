@@ -6,9 +6,13 @@ Board::Board(Graphics& gfx, int dim)
 	:
 	gfx(gfx),
 	rnd(std::random_device()()),
-	dimension(dim)
+	dimension(dim),
+	Board1D(new Content[Rows*Columns])
 
 {
+	for (int x = 0; x < Rows*Columns; x++)
+		Board1D[x] = { Content::Nothing };
+
 	for(int i = 0 ; i < nPoison ; i++)
 	SpawnFeature(rnd, Content::Poison);
 }
