@@ -17,7 +17,7 @@ public:
 		Poison
 	};
 public:
-	Board(Graphics& gfx);
+	Board(Graphics& gfx, int dim);
 	void DrawCells(Color c, Content content);
 	void SpawnContent(const Location& loc,const Content content);
 	void SpawnFeature(std::mt19937& rnd, const Content content );

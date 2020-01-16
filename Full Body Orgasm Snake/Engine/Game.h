@@ -29,6 +29,7 @@
 #include "FrameTimer.h"
 #include <random>
 #include "Frame.h"
+#include "GameSettings.h"
 
 class Game
 {
@@ -56,6 +57,7 @@ private:
 	/*  User Variables              */
 	void SpeedUp();
 	/********************************/
+	GameSettings gt = "Settings.txt";
 	Snake snake;
 	Board brd;
 	std::mt19937 rnd;

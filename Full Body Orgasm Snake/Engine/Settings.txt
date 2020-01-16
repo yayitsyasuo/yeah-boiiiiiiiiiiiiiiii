@@ -1,5 +1,5 @@
-Tile size
-20
+-TILE SIZE
+10
 
-Poison amount
+-POISON AMOUNT
 5

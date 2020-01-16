@@ -25,8 +25,8 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	snake({15, 10}, brd),
-	brd(gfx),
+	snake({ 15, 10 }, brd),
+	brd(gfx, gt.GetTileSize()),
 	rnd(std::random_device ()()),
 	f(gfx)
 {
