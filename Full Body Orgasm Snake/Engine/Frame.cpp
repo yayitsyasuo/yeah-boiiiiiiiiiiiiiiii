@@ -1,8 +1,10 @@
 #include "Frame.h"
 
-Frame::Frame(Graphics& gfx)
+Frame::Frame(Graphics& gfx, GameSettings& gt)
 	:
-	gfx(gfx)
+	gfx(gfx),
+	DynamicGapRight(Graphics::ScreenWidth - ( gt.GetBoardSizeX() + 1) * gt.GetTileSize()  ),
+	DynamicGapBottom(Graphics::ScreenHeight - (gt.GetBoardSizeY() + 1) * gt.GetTileSize())
 {
 }
 
@@ -12,14 +14,14 @@ void Frame::DrawAlles()
 	//left top left tri
 	TriLTL(GetLoc(Gap,Gap), GetColor(leftFactor));
 	// left bottom left tri
-	TriLDL(GetLoc(Gap, gfx.ScreenHeight+ 1 - Gap - TriWidth), GetColor(leftFactor));
+	TriLDL(GetLoc(Gap, gfx.ScreenHeight+ 1 - DynamicGapBottom - TriWidth), GetColor(leftFactor));
 	//left left RECT
-	Rect(Gap, Gap + TriWidth, Gap + TriWidth, gfx.ScreenHeight+ 1 - Gap - TriWidth, GetColor(leftFactor));
+	Rect(Gap, Gap + TriWidth, Gap + TriWidth, gfx.ScreenHeight+ 1 - DynamicGapBottom - TriWidth, GetColor(leftFactor));
 	//left top right tri
 	TriLTL(GetLoc(Gap + TriWidth, Gap+TriWidth), GetColor(rightFactor));
 	//left bottom right
-	TriLDL(GetLoc(Gap + TriWidth, gfx.ScreenHeight+ 1 - Gap - TriWidth - TriWidth), GetColor(rightFactor));
-	Rect(Gap + TriWidth, Gap + 2*TriWidth, Gap + 2*TriWidth, gfx.ScreenHeight+ 1 - Gap - 2*TriWidth, GetColor(rightFactor));
+	TriLDL(GetLoc(Gap + TriWidth, gfx.ScreenHeight+ 1 - DynamicGapBottom - TriWidth - TriWidth), GetColor(rightFactor));
+	Rect(Gap + TriWidth, Gap + 2*TriWidth, Gap + 2*TriWidth, gfx.ScreenHeight+ 1 - DynamicGapBottom - 2*TriWidth, GetColor(rightFactor));
 
 
 	//left top left top tri
@@ -27,37 +29,37 @@ void Frame::DrawAlles()
 	//left top left bottom tri
 	TriLTL2(GetLoc(Gap + TriWidth, Gap + TriWidth), GetColor(bottomFactor));
 	//top top rect
-	Rect(Gap+TriWidth, Gap, gfx.ScreenWidth + 1-TriWidth-Gap, Gap+TriWidth, GetColor(topFactor));
+	Rect(Gap+TriWidth, Gap, gfx.ScreenWidth + 1-TriWidth-DynamicGapRight, Gap + TriWidth, GetColor(topFactor));
 	//top bottom rect
-	Rect(Gap + 2*TriWidth, Gap + TriWidth, gfx.ScreenWidth + 1 - 2*TriWidth - Gap, Gap + 2*TriWidth, GetColor(bottomFactor));
+	Rect(Gap + 2*TriWidth, Gap + TriWidth, gfx.ScreenWidth + 1 - 2*TriWidth - DynamicGapRight, Gap + 2*TriWidth, GetColor(bottomFactor));
 	//right top left tri
-	TriLDL(GetLoc(gfx.ScreenWidth + 1-Gap-TriWidth, Gap), GetColor(topFactor));
+	TriLDL(GetLoc(gfx.ScreenWidth + 1- DynamicGapRight -TriWidth, Gap), GetColor(topFactor));
 	//right top left left tri
-	TriLDL(GetLoc(gfx.ScreenWidth + 1 - Gap - 2*TriWidth, Gap+TriWidth), GetColor(bottomFactor));
+	TriLDL(GetLoc(gfx.ScreenWidth + 1 - DynamicGapRight - 2*TriWidth, Gap+TriWidth), GetColor(bottomFactor));
 	//right top right right
 	//right top right right bottom
-	TriLDL2(GetLoc(gfx.ScreenWidth + 1 - Gap , Gap), GetColor(rightFactor));
-	TriLDL2(GetLoc(gfx.ScreenWidth + 1 - Gap - TriWidth, Gap + TriWidth), GetColor(leftFactor));
+	TriLDL2(GetLoc(gfx.ScreenWidth + 1 - DynamicGapRight, Gap), GetColor(rightFactor));
+	TriLDL2(GetLoc(gfx.ScreenWidth + 1 - DynamicGapRight - TriWidth, Gap + TriWidth), GetColor(leftFactor));
 	//right right rect
-	Rect(gfx.ScreenWidth + 1 - Gap - 2 * TriWidth, Gap + 2 * TriWidth, gfx.ScreenWidth + 1 - Gap - TriWidth, gfx.ScreenHeight+ 1 - Gap - 2 * TriWidth, GetColor(leftFactor));
+	Rect(gfx.ScreenWidth + 1 - DynamicGapRight - 2 * TriWidth, Gap + 2 * TriWidth, gfx.ScreenWidth + 1 - DynamicGapRight - TriWidth, gfx.ScreenHeight+ 1 - DynamicGapBottom - 2 * TriWidth, GetColor(leftFactor));
 	//right left reect
-	Rect(gfx.ScreenWidth + 1 - Gap - TriWidth, Gap + TriWidth, gfx.ScreenWidth + 1 - Gap, gfx.ScreenHeight+ 1 - Gap -  TriWidth, GetColor(rightFactor));
+	Rect(gfx.ScreenWidth + 1 - DynamicGapRight - TriWidth, Gap + TriWidth, gfx.ScreenWidth + 1 - DynamicGapRight, gfx.ScreenHeight+ 1 - DynamicGapBottom -  TriWidth, GetColor(rightFactor));
 
 	//left bottom left left
-	TriLDL2(GetLoc(Gap+TriWidth, gfx.ScreenHeight+ 1 - Gap- TriWidth), GetColor(bottomFactor));
-	TriLDL2(GetLoc(Gap+ 2*TriWidth, gfx.ScreenHeight+ 1 - Gap - 2*TriWidth), GetColor(topFactor));
+	TriLDL2(GetLoc(Gap+TriWidth, gfx.ScreenHeight+ 1 - DynamicGapBottom- TriWidth), GetColor(bottomFactor));
+	TriLDL2(GetLoc(Gap+ 2*TriWidth, gfx.ScreenHeight+ 1 - DynamicGapBottom - 2*TriWidth), GetColor(topFactor));
 
 	//right bottom right right
-	TriLTL2(GetLoc(gfx.ScreenWidth + 1 - Gap - TriWidth, gfx.ScreenHeight+ 1 - Gap - TriWidth), GetColor(rightFactor));
-	TriLTL2(GetLoc(gfx.ScreenWidth + 1 - Gap - 2 * TriWidth, gfx.ScreenHeight+ 1 - Gap - 2 * TriWidth), GetColor(leftFactor));
+	TriLTL2(GetLoc(gfx.ScreenWidth + 1 - DynamicGapRight - TriWidth, gfx.ScreenHeight+ 1 - DynamicGapBottom - TriWidth), GetColor(rightFactor));
+	TriLTL2(GetLoc(gfx.ScreenWidth + 1 - DynamicGapRight - 2 * TriWidth, gfx.ScreenHeight+ 1 - DynamicGapBottom - 2 * TriWidth), GetColor(leftFactor));
 	//right bottom left
-	TriLTL(GetLoc(gfx.ScreenWidth + 1 - Gap - TriWidth, gfx.ScreenHeight+ 1 - Gap - TriWidth), GetColor(bottomFactor));
-	TriLTL(GetLoc(gfx.ScreenWidth + 1 - Gap - 2*TriWidth, gfx.ScreenHeight+ 1 - Gap - 2*TriWidth), GetColor(topFactor));
+	TriLTL(GetLoc(gfx.ScreenWidth + 1 - DynamicGapRight - TriWidth, gfx.ScreenHeight+ 1 - DynamicGapBottom - TriWidth), GetColor(bottomFactor));
+	TriLTL(GetLoc(gfx.ScreenWidth + 1 - DynamicGapRight - 2*TriWidth, gfx.ScreenHeight+ 1 - DynamicGapBottom - 2*TriWidth), GetColor(topFactor));
 
 	//bottom top rect
-	Rect(Gap + 2 * TriWidth, gfx.ScreenHeight+ 1 - Gap - 2 * TriWidth, gfx.ScreenWidth + 1 - Gap - 2 * TriWidth, gfx.ScreenHeight+ 1 - TriWidth - Gap, GetColor(topFactor));
+	Rect(Gap + 2 * TriWidth, gfx.ScreenHeight+ 1 - DynamicGapBottom - 2 * TriWidth, gfx.ScreenWidth + 1 - DynamicGapRight - 2 * TriWidth, gfx.ScreenHeight+ 1 - TriWidth - DynamicGapBottom, GetColor(topFactor));
 	//bottom bottom rect
-	Rect(Gap+TriWidth, gfx.ScreenHeight+ 1-Gap-TriWidth, gfx.ScreenWidth + 1-Gap-TriWidth, gfx.ScreenHeight+ 1 - Gap, GetColor(bottomFactor));
+	Rect(Gap+TriWidth, gfx.ScreenHeight+ 1- DynamicGapBottom -TriWidth, gfx.ScreenWidth + 1- DynamicGapRight -TriWidth, gfx.ScreenHeight+ 1 - DynamicGapBottom, GetColor(bottomFactor));
 }
 
 void Frame::TriLTL(Location& loc, Color& c)

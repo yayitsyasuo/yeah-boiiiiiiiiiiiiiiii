@@ -1,10 +1,11 @@
 #pragma once
 #include "Graphics.h"
 #include "Location.h"
+#include "GameSettings.h"
 class Frame
 {
 public:
-	Frame(Graphics& gfx);
+	Frame(Graphics& gfx, GameSettings& gt);
 	void DrawAlles();
 	void TriLTL(Location& loc, Color& c); // top left side triangle Left (touching the left side)
 	void TriLTL2(Location& loc, Color& c);
@@ -15,6 +16,8 @@ public:
 	Color GetColor(float factor);
 private:
 	static constexpr int Gap = 40; // lit.: space from left screen to right of the border 
+	int DynamicGapBottom;
+	int DynamicGapRight;
 	static constexpr int Width = 14;
 	static constexpr int TriWidth = Width /2;
 
