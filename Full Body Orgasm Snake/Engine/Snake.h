@@ -1,21 +1,24 @@
 #pragma once
-// #include "Location.h" wtf
 #include "Board.h"
 #include <random>
+#include <vector>
 class Snake
 {
 public:
 	class Segment {
-		public: // can't initialize constructor when the object is a fucking array
-			void Init(const Location& loc);
-			void Draw(Board& brd, Color c, Board::Content content);
+		public: // can't initialize constructor when the object is a fucking array		
+			Segment(const Location& locc)
+				:
+				loc(locc)
+			{
+			}
+			void Draw(Board& brd, Color c, const Board::Content content);
 			void LastContentUpdate( Board& brd, const Location& dl);
 			Board::Content ControltheHead(Board& brd, const Location & dl);
 			void ContentUpdate(Board& brd, const Location & dl,const Board::Content content);
 			const Location& GetLoc() const;
 		private:
 			Location loc;
-
 	};
 public:
 	Snake(const Location& in, Board& brd);
@@ -27,11 +30,10 @@ public:
 private:
 	std::mt19937 rnd;
 	Board& brd;
-	static constexpr int segMax=100;
 	int nSegments=1;
 	int GoalsEaten = 1;
 	static constexpr int nColourMax = 12;
-	Segment seg[segMax];
+	std::vector <Segment> seg;
 	Color c[nColourMax+1]{
 		{204,255,229},{153,255,204},{102,255,178},
 		{51,255,153},{0,255,128},{0,204,102},	
