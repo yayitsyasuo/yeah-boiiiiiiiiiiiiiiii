@@ -1,8 +1,11 @@
 #include "Frame.h"
 
-Frame::Frame(Graphics& gfx, GameSettings& gt)
+Frame::Frame(Graphics& gfx, GameSettings& gt, Board& brd)
 	:
 	gfx(gfx),
+	brd(brd),
+	BoardSizeX(gt.GetBoardSizeX()),
+	BoardSizeY(gt.GetBoardSizeY()),
 	DynamicGapRight(Graphics::ScreenWidth - ( gt.GetBoardSizeX() + 1) * gt.GetTileSize()  ),
 	DynamicGapBottom(Graphics::ScreenHeight - (gt.GetBoardSizeY() + 1) * gt.GetTileSize())
 {
@@ -60,6 +63,20 @@ void Frame::DrawAlles()
 	Rect(Gap + 2 * TriWidth, gfx.ScreenHeight+ 1 - DynamicGapBottom - 2 * TriWidth, gfx.ScreenWidth + 1 - DynamicGapRight - 2 * TriWidth, gfx.ScreenHeight+ 1 - TriWidth - DynamicGapBottom, GetColor(topFactor));
 	//bottom bottom rect
 	Rect(Gap+TriWidth, gfx.ScreenHeight+ 1- DynamicGapBottom -TriWidth, gfx.ScreenWidth + 1- DynamicGapRight -TriWidth, gfx.ScreenHeight+ 1 - DynamicGapBottom, GetColor(bottomFactor));
+
+
+
+//	for (int y = 1; y <= BoardSizeY; y++) // left /right side             ///// USED TO BE 28
+//	{
+//		brd.SpawnContent(Location(1, y), Board::Content::Wall);
+//		brd.SpawnContent(Location(BoardSizeX, y), Board::Content::Wall);  ////// USED TO BE 37
+//	}
+//	for (int x = 1; x <= BoardSizeX; x++) // left /right side           ////// USED TO BE 37
+//	{
+//		brd.SpawnContent(Location(x, 1), Board::Content::Wall);
+//		brd.SpawnContent(Location(x, BoardSizeY), Board::Content::Wall); ///// USED TO BE 28
+//	}
+
 }
 
 void Frame::TriLTL(Location& loc, Color& c)

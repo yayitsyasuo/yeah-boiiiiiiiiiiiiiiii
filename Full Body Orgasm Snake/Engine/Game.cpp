@@ -28,7 +28,7 @@ Game::Game( MainWindow& wnd )
 	brd(gfx, gt),
 	snake({ 5, 3 }, brd),
 	rnd(std::random_device ()()),
-	f(gfx, gt)
+	f(gfx, gt, brd)
 {
 	for(int i=0; i<nFruits; i++)
 	brd.SpawnFeature(rnd, Board::Content::Fruit);
@@ -95,7 +95,7 @@ void Game::UpdateModel()
 		if (dtSum > dtSumLimit) // dtSum controls the speed
 		{
 			dtSum -= dtSum;
-		//	snake.Update(dloc);
+			snake.Update(dloc);
 			if (snake.SpeedMeUp) // cringe method but w/e
 			{
 				dtSumLimit -= 0.0005f;
@@ -103,17 +103,6 @@ void Game::UpdateModel()
 			}
 			dtSumLimit = dtSumLimit - 0.0002f; // speeding up
 		}
-		// FRAME STUFF
-		// for (int y = 2; y <= 15; y++) // left /right side             ///// USED TO BE 28
-		// {
-		// 	brd.SpawnContent(Location(2, y), Board::Content::Wall);
-		// 	brd.SpawnContent(Location(20, y), Board::Content::Wall);  ////// USED TO BE 37
-		// }
-		// for (int x = 2; x <= 15; x++) // left /right side           ////// USED TO BE 37
-		// {
-		// 	brd.SpawnContent(Location(x, 1), Board::Content::Wall);
-		// 	brd.SpawnContent(Location(x, 20), Board::Content::Wall); ///// USED TO BE 28
-		// }
 	}
 }
 
