@@ -1,12 +1,12 @@
 #include "Snake.h"
 #include "Location.h"
+#include <assert.h>
 
 Snake::Snake(const Location & in, Board& brd)
 	:
 	rnd(std::random_device()()),
 	brd(brd)
 {
-	// brd.SpawnContent(in); //gives it place in the grid based on that loc
 	seg[0].Init(in); // gives it location
 	seg[1].Init(in);
 	// Location l=(in + Location(0, brd.dimension));

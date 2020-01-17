@@ -58,8 +58,8 @@ private:
 	void SpeedUp();
 	/********************************/
 	GameSettings gt = "Settings.txt";
-	Snake snake;
 	Board brd;
+	Snake snake;
 	std::mt19937 rnd;
 	Location dloc = {1,0};
 	FrameTimer ft;

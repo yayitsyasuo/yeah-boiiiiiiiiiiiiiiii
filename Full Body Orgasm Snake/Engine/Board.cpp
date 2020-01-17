@@ -2,17 +2,16 @@
 #include <assert.h>
 #include <random>
 
-Board::Board(Graphics& gfx, int dim)
+Board::Board(Graphics& gfx, GameSettings& gt)
 	:
+	Columns(gt.GetBoardSizeX()),
+	Rows(gt.GetBoardSizeY()),
+	dimension(gt.GetTileSize()),
+	Board1D(Rows*Columns, Content::Nothing),
 	gfx(gfx),
-	rnd(std::random_device()()),
-	dimension(dim),
-	Board1D(new Content[Rows*Columns])
+	rnd(std::random_device()())
 
 {
-	for (int x = 0; x < Rows*Columns; x++)
-		Board1D[x] = { Content::Nothing };
-
 	for(int i = 0 ; i < nPoison ; i++)
 	SpawnFeature(rnd, Content::Poison);
 }

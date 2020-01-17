@@ -25,8 +25,8 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	snake({ 15, 10 }, brd),
-	brd(gfx, gt.GetTileSize()),
+	brd(gfx, gt),
+	snake({ 5, 3 }, brd),
 	rnd(std::random_device ()()),
 	f(gfx)
 {
@@ -104,16 +104,16 @@ void Game::UpdateModel()
 			dtSumLimit = dtSumLimit - 0.0002f; // speeding up
 		}
 		// FRAME STUFF
-		for (int y = 2; y <= 28; y++) // left /right side
-		{
-			brd.SpawnContent(Location(2, y), Board::Content::Wall);
-			brd.SpawnContent(Location(37, y), Board::Content::Wall);
-		}
-		for (int x = 2; x <= 37; x++) // left /right side
-		{
-			brd.SpawnContent(Location(x, 1), Board::Content::Wall);
-			brd.SpawnContent(Location(x, 26), Board::Content::Wall);
-		}
+		// for (int y = 2; y <= 15; y++) // left /right side             ///// USED TO BE 28
+		// {
+		// 	brd.SpawnContent(Location(2, y), Board::Content::Wall);
+		// 	brd.SpawnContent(Location(20, y), Board::Content::Wall);  ////// USED TO BE 37
+		// }
+		// for (int x = 2; x <= 15; x++) // left /right side           ////// USED TO BE 37
+		// {
+		// 	brd.SpawnContent(Location(x, 1), Board::Content::Wall);
+		// 	brd.SpawnContent(Location(x, 20), Board::Content::Wall); ///// USED TO BE 28
+		// }
 	}
 }
 
