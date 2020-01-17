@@ -29,7 +29,7 @@ public:
 	int Columns; // 760 / 20; //38
 	int Rows; // 560 / 20; //28
 	int dimension;
-	static int constexpr nPoison = 2;
+	int nPoison;
 	 // static int constexpr SnakeDimension = 19; padding is inside Graphics !
 	std::vector < Content > Board1D;
 	Graphics& gfx;

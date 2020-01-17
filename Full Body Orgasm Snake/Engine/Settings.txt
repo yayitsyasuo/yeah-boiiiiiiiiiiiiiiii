@@ -6,3 +6,6 @@
 
 -POISON AMOUNT
 5
+
+-FOOD AMOUNT
+4

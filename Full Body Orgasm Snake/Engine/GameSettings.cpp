@@ -16,9 +16,17 @@ GameSettings::GameSettings(const std::string& File)
 		{
 			in >> BoardSizeX >> BoardSizeY;
 		}
+		else if (str.find("-POISON AMOUNT") != std::string::npos)
+		{
+			in >> PoisonAmount;
+		}
 	}
 }
 
+int GameSettings::GetnPoison() const
+{
+	return PoisonAmount;
+}
 
 int GameSettings::GetTileSize() const
 {
