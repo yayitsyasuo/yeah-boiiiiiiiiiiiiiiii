@@ -6,8 +6,8 @@ Frame::Frame(Graphics& gfx, GameSettings& gt, Board& brd)
 	brd(brd),
 	BoardSizeX(gt.GetBoardSizeX()),
 	BoardSizeY(gt.GetBoardSizeY()),
-	DynamicGapRight(Graphics::ScreenWidth - ( gt.GetBoardSizeX() + 2) * gt.GetTileSize()  ),
-	DynamicGapBottom(Graphics::ScreenHeight - (gt.GetBoardSizeY() + 2) * gt.GetTileSize())
+	DynamicGapRight(Graphics::ScreenWidth - ( gt.GetBoardSizeX() ) * gt.GetTileSize()  ),
+	DynamicGapBottom(Graphics::ScreenHeight - (gt.GetBoardSizeY() + 1) * gt.GetTileSize())
 {
 	// fucking -1 beacuse the whole shit starts from 0 !!!
 	for (int y = 0; y <= BoardSizeY - 1; y++) // left /right side             ///// USED TO BE 28
