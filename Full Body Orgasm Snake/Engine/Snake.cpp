@@ -14,9 +14,9 @@ Snake::Snake(const Location & in, Board& brd)
 void Snake::Draw()
 {
 	seg.front().Draw(brd, c[nColour], Board::Content::Snake);
-	seg.front().Draw(brd, HeadC, Board::Content::Head); // head has got some exclusive shit yeah
 	seg.front().Draw(brd, ObstacleC ,Board::Content::Obstacle);
 	seg.front().Draw(brd, Colors::Green, Board::Content::Mixture);
+	seg.front().Draw(brd, HeadC, Board::Content::Head);
 }
 
 void Snake::Update(const Location & dl) // the guy that calls everything since he's being called in Game.cpp
@@ -66,7 +66,9 @@ void Snake::Update(const Location & dl) // the guy that calls everything since h
 		case Board::Content::Obstacle:
 		case Board::Content::Snake:// this guy gets some exlusive shit
 		case Board::Content::Wall:
-		GameOver = true;
+			brd.EmptyContent(seg.front().GetLoc());
+			brd.SpawnContent(seg.front().GetLoc(), Board::Content::Head);
+			GameOver = true;
 		break;
 	// when you run on a mixture
 		case Board::Content::Mixture:

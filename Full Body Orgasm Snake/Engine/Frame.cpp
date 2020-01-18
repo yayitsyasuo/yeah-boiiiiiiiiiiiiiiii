@@ -9,6 +9,17 @@ Frame::Frame(Graphics& gfx, GameSettings& gt, Board& brd)
 	DynamicGapRight(Graphics::ScreenWidth - ( gt.GetBoardSizeX() + 2) * gt.GetTileSize()  ),
 	DynamicGapBottom(Graphics::ScreenHeight - (gt.GetBoardSizeY() + 2) * gt.GetTileSize())
 {
+	// fucking -1 beacuse the whole shit starts from 0 !!!
+	for (int y = 0; y <= BoardSizeY - 1; y++) // left /right side             ///// USED TO BE 28
+	{
+		brd.SpawnContent(Location(0, y), Board::Content::Wall);
+		brd.SpawnContent(Location(BoardSizeX - 1, y), Board::Content::Wall);  ////// USED TO BE 37
+	}
+	for (int x = 1; x < BoardSizeX - 1; x++) // left /right side           ////// USED TO BE 37
+	{
+		brd.SpawnContent(Location(x, 0), Board::Content::Wall);
+		brd.SpawnContent(Location(x, BoardSizeY - 1), Board::Content::Wall); ///// USED TO BE 28
+	}
 }
 
 void Frame::DrawAlles()
@@ -63,20 +74,6 @@ void Frame::DrawAlles()
 	Rect(Gap + 2 * TriWidth, gfx.ScreenHeight+ 1 - DynamicGapBottom - 2 * TriWidth, gfx.ScreenWidth + 1 - DynamicGapRight - 2 * TriWidth, gfx.ScreenHeight+ 1 - TriWidth - DynamicGapBottom, GetColor(topFactor));
 	//bottom bottom rect
 	Rect(Gap+TriWidth, gfx.ScreenHeight+ 1- DynamicGapBottom -TriWidth, gfx.ScreenWidth + 1- DynamicGapRight -TriWidth, gfx.ScreenHeight+ 1 - DynamicGapBottom, GetColor(bottomFactor));
-
-
-	// fucking -1 beacuse the whole shit starts from 0 !!!
-	for (int y = 0; y <= BoardSizeY - 1; y++) // left /right side             ///// USED TO BE 28
-	{
-		brd.SpawnContent(Location(0, y), Board::Content::Wall);
-		brd.SpawnContent(Location(BoardSizeX - 1, y), Board::Content::Wall);  ////// USED TO BE 37
-	}
-	for (int x = 1; x < BoardSizeX - 1; x++) // left /right side           ////// USED TO BE 37
-	{
-		brd.SpawnContent(Location(x, 0), Board::Content::Wall);
-		brd.SpawnContent(Location(x, BoardSizeY - 1), Board::Content::Wall); ///// USED TO BE 28
-	}
-
 }
 
 void Frame::TriLTL(Location& loc, Color& c)

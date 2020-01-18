@@ -29,7 +29,6 @@ void Board::DrawCells(Color c, Content content)
 			}
 		}
 	}
-	//gfx.DrawCell(loc, c, dimension);
 }
 
 void Board::SpawnContent(const Location& loc, const Content content)
