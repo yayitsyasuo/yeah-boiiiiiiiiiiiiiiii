@@ -8,7 +8,7 @@ Board::Board(Graphics& gfx, GameSettings& gt)
 	Rows(gt.GetBoardSizeY()),
 	dimension(gt.GetTileSize()),
 	nPoison(gt.GetnPoison()),
-	Board1D(Rows*Columns, Content::Nothing),
+	Board1D(Rows*Columns + 1, Content::Nothing),
 	gfx(gfx),
 	rnd(std::random_device()())
 

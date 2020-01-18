@@ -65,17 +65,17 @@ void Frame::DrawAlles()
 	Rect(Gap+TriWidth, gfx.ScreenHeight+ 1- DynamicGapBottom -TriWidth, gfx.ScreenWidth + 1- DynamicGapRight -TriWidth, gfx.ScreenHeight+ 1 - DynamicGapBottom, GetColor(bottomFactor));
 
 
-
-//	for (int y = 1; y <= BoardSizeY; y++) // left /right side             ///// USED TO BE 28
-//	{
-//		brd.SpawnContent(Location(1, y), Board::Content::Wall);
-//		brd.SpawnContent(Location(BoardSizeX, y), Board::Content::Wall);  ////// USED TO BE 37
-//	}
-//	for (int x = 1; x <= BoardSizeX; x++) // left /right side           ////// USED TO BE 37
-//	{
-//		brd.SpawnContent(Location(x, 1), Board::Content::Wall);
-//		brd.SpawnContent(Location(x, BoardSizeY), Board::Content::Wall); ///// USED TO BE 28
-//	}
+	// fucking -1 beacuse the whole shit starts from 0 !!!
+	for (int y = 0; y <= BoardSizeY - 1; y++) // left /right side             ///// USED TO BE 28
+	{
+		brd.SpawnContent(Location(0, y), Board::Content::Wall);
+		brd.SpawnContent(Location(BoardSizeX - 1, y), Board::Content::Wall);  ////// USED TO BE 37
+	}
+	for (int x = 1; x < BoardSizeX - 1; x++) // left /right side           ////// USED TO BE 37
+	{
+		brd.SpawnContent(Location(x, 0), Board::Content::Wall);
+		brd.SpawnContent(Location(x, BoardSizeY - 1), Board::Content::Wall); ///// USED TO BE 28
+	}
 
 }
 

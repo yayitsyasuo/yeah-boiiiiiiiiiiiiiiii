@@ -32,7 +32,6 @@ Game::Game( MainWindow& wnd )
 {
 	for(int i=0; i<nFruits; i++)
 	brd.SpawnFeature(rnd, Board::Content::Fruit);
-	// snake.SpawnSegment(brd);
 }
 
 void Game::Go()
