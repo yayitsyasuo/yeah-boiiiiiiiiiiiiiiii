@@ -4,10 +4,11 @@ Frame::Frame(Graphics& gfx, GameSettings& gt, Board& brd)
 	:
 	gfx(gfx),
 	brd(brd),
+	Gap(gt.GetTileSize() + gt.GetTileSize() / 2),
 	BoardSizeX(gt.GetBoardSizeX()),
 	BoardSizeY(gt.GetBoardSizeY()),
-	DynamicGapRight(Graphics::ScreenWidth - ( gt.GetBoardSizeX() ) * gt.GetTileSize()  ),
-	DynamicGapBottom(Graphics::ScreenHeight - (gt.GetBoardSizeY() + 1) * gt.GetTileSize())
+	DynamicGapRight(Graphics::ScreenWidth - ( gt.GetBoardSizeX() ) * gt.GetTileSize() + gt.GetTileSize() / 2),
+	DynamicGapBottom(Graphics::ScreenHeight - (gt.GetBoardSizeY() + 1) * gt.GetTileSize() + gt.GetTileSize() / 2)
 {
 	// fucking -1 beacuse the whole shit starts from 0 !!!
 	for (int y = 0; y <= BoardSizeY - 1; y++) // left /right side             ///// USED TO BE 28

@@ -16,7 +16,7 @@ public:
 	Location GetLoc(int x, int y);
 	Color GetColor(float factor);
 private:
-	static constexpr int Gap = 40; // lit.: space from left screen to right of the border 
+	int Gap; // lit.: space from left screen to right of the border 
 	int DynamicGapBottom;
 	int DynamicGapRight;
 	int BoardSizeX;
