@@ -26,11 +26,12 @@ public:
 	void EmptyContent(const Location& loc);
 	Content ContentCheck(const Location & loc);
 public:
-	int Columns; // 760 / 20; //38
-	int Rows; // 560 / 20; //28
+	int Columns;
+	int Rows;
 	int dimension;
 	int nPoison;
-	 // static int constexpr SnakeDimension = 19; padding is inside Graphics !
+	int nFruits;
+	 //padding is inside Graphics !
 	std::vector < Content > Board1D;
 	Graphics& gfx;
 	std::mt19937 rnd;

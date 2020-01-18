@@ -4,22 +4,23 @@ Frame::Frame(Graphics& gfx, GameSettings& gt, Board& brd)
 	:
 	gfx(gfx),
 	brd(brd),
-	Gap(gt.GetTileSize() + gt.GetTileSize() / 2),
+	Width(gt.GetTileSize()/2), 
+	Gap(gt.GetTileSize()),// please don't change me
 	BoardSizeX(gt.GetBoardSizeX()),
 	BoardSizeY(gt.GetBoardSizeY()),
-	DynamicGapRight(Graphics::ScreenWidth - ( gt.GetBoardSizeX() ) * gt.GetTileSize() + gt.GetTileSize() / 2),
-	DynamicGapBottom(Graphics::ScreenHeight - (gt.GetBoardSizeY() + 1) * gt.GetTileSize() + gt.GetTileSize() / 2)
+	DynamicGapRight(Graphics::ScreenWidth - ( gt.GetBoardSizeX() ) * gt.GetTileSize()),
+	DynamicGapBottom(Graphics::ScreenHeight - (gt.GetBoardSizeY() + 1) * gt.GetTileSize())
 {
 	// fucking -1 beacuse the whole shit starts from 0 !!!
-	for (int y = 0; y <= BoardSizeY - 1; y++) // left /right side             ///// USED TO BE 28
+	for (int y = 0; y <= BoardSizeY - 1; y++) // left & right side            
 	{
-		brd.SpawnContent(Location(0, y), Board::Content::Wall);
-		brd.SpawnContent(Location(BoardSizeX - 1, y), Board::Content::Wall);  ////// USED TO BE 37
+		brd.SpawnContent(Location(1, y), Board::Content::Wall);
+		brd.SpawnContent(Location(BoardSizeX - 1, y), Board::Content::Wall); 
 	}
-	for (int x = 1; x < BoardSizeX - 1; x++) // left /right side           ////// USED TO BE 37
+	for (int x = 1; x < BoardSizeX - 1; x++) // left & right side          
 	{
 		brd.SpawnContent(Location(x, 0), Board::Content::Wall);
-		brd.SpawnContent(Location(x, BoardSizeY - 1), Board::Content::Wall); ///// USED TO BE 28
+		brd.SpawnContent(Location(x, BoardSizeY - 1), Board::Content::Wall); 
 	}
 }
 

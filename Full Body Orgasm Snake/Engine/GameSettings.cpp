@@ -20,7 +20,20 @@ GameSettings::GameSettings(const std::string& File)
 		{
 			in >> PoisonAmount;
 		}
+		else if (str.find("-FOOD AMOUNT") != std::string::npos)
+		{
+			in >> nFruits;
+		}
+		else
+		{
+			std::runtime_error("Bad fucking input man");
+		}
 	}
+}
+
+int GameSettings::GetnFruits() const
+{
+	return nFruits;
 }
 
 int GameSettings::GetnPoison() const

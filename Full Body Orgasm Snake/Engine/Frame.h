@@ -21,8 +21,8 @@ private:
 	int DynamicGapRight;
 	int BoardSizeX;
 	int BoardSizeY;
-	static constexpr int Width = 14;
-	static constexpr int TriWidth = Width /2;
+	int Width;
+	int TriWidth = Width /2;
 	static constexpr float leftFactor = 1.10f; //1,10
 	static constexpr float topFactor = 0.93f;
 	static constexpr float bottomFactor = 0.80f;

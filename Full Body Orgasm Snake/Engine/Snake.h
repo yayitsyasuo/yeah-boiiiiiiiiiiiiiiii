@@ -30,7 +30,6 @@ public:
 private:
 	std::mt19937 rnd;
 	Board& brd;
-	int nSegments=1;
 	int GoalsEaten = 1;
 	static constexpr int nColourMax = 12;
 	std::vector <Segment> seg;
@@ -46,7 +45,5 @@ private:
 	Color ObstacleC = Colors::MakeRGB(128, 128, 128);
 	bool GameOver = false;
 	bool justonce = true;
-	 // Board brd; NO! it'd be different object than the relevant one
-	// Board brd; don't fucking use it 
 };
 

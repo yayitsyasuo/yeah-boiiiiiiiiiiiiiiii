@@ -30,8 +30,6 @@ Game::Game( MainWindow& wnd )
 	rnd(std::random_device ()()),
 	f(gfx, gt, brd)
 {
-	for(int i=0; i<nFruits; i++)
-	brd.SpawnFeature(rnd, Board::Content::Fruit);
 }
 
 void Game::Go()

@@ -8,6 +8,7 @@ Board::Board(Graphics& gfx, GameSettings& gt)
 	Rows(gt.GetBoardSizeY()),
 	dimension(gt.GetTileSize()),
 	nPoison(gt.GetnPoison()),
+	nFruits(gt.GetnFruits()),
 	Board1D(Rows*Columns + 1, Content::Nothing),
 	gfx(gfx),
 	rnd(std::random_device()())
@@ -15,6 +16,8 @@ Board::Board(Graphics& gfx, GameSettings& gt)
 {
 	for(int i = 0 ; i < nPoison ; i++)
 	SpawnFeature(rnd, Content::Poison);
+	for (int i = 0; i < nFruits; i++)
+	SpawnFeature(rnd, Board::Content::Fruit);
 }
 
 void Board::DrawCells(Color c, Content content)
@@ -38,8 +41,8 @@ void Board::SpawnContent(const Location& loc, const Content content)
 
 void Board::SpawnFeature(std::mt19937& rnd, const Content content)
 {
-	std::uniform_int_distribution<int> Xdist(2, Columns-3);
-	std::uniform_int_distribution<int> Ydist(2, Rows-3);
+	std::uniform_int_distribution<int> Xdist(1, Columns-1);
+	std::uniform_int_distribution<int> Ydist(1, Rows-1);
 	Location newLoc(Xdist(rnd), Ydist(rnd));
 	
 	while (ContentCheck(newLoc) != Content::Nothing)

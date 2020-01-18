@@ -66,7 +66,6 @@ private:
 	float dtSum = 0.0f;
 	Richtung r { Richtung::right };
 	float dtSumLimit= 0.15f; 
-	static constexpr int nFruits = 3;
 	Color c = Colors::Red;
 	Color cPoison = Colors::MakeRGB(102,0,102);
 	Frame f;

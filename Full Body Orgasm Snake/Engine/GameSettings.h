@@ -8,6 +8,7 @@ public:
 	int GetBoardSizeX() const;
 	int GetBoardSizeY() const;
 	int GetnPoison() const;
+	int GetnFruits() const;
 
 private:
 	std::string str;
@@ -15,5 +16,6 @@ private:
 	int BoardSizeX;
 	int BoardSizeY;
 	int PoisonAmount;
+	int nFruits;
 };
 
