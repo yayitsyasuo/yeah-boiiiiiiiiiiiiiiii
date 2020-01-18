@@ -6,8 +6,8 @@ Frame::Frame(Graphics& gfx, GameSettings& gt, Board& brd)
 	brd(brd),
 	BoardSizeX(gt.GetBoardSizeX()),
 	BoardSizeY(gt.GetBoardSizeY()),
-	DynamicGapRight(Graphics::ScreenWidth - ( gt.GetBoardSizeX() + 1) * gt.GetTileSize()  ),
-	DynamicGapBottom(Graphics::ScreenHeight - (gt.GetBoardSizeY() + 1) * gt.GetTileSize())
+	DynamicGapRight(Graphics::ScreenWidth - ( gt.GetBoardSizeX() + 2) * gt.GetTileSize()  ),
+	DynamicGapBottom(Graphics::ScreenHeight - (gt.GetBoardSizeY() + 2) * gt.GetTileSize())
 {
 }
 

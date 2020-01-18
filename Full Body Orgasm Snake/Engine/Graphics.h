@@ -64,11 +64,11 @@ public:
 	}
 	void DrawCell(int x, int y, Color c, int dimension)
 	{
-		int xx = (x+1) * dimension;  // +1 is shifting the grid to the right
-		int yy = (y+1) * dimension;
+		int xx = (x+3) * dimension;  // +1 is shifting the grid to the right
+		int yy = (y+2) * dimension;
 		DrawRectDim(xx -1 - dimension,
 			yy -1 ,
-			dimension -1, dimension -1, c); //that -1 is padding
+			dimension -1 , dimension -1, c); //that -1 is padding
 	}
 	~Graphics();
 private:
