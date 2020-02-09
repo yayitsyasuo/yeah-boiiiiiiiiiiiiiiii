@@ -44,7 +44,7 @@ void Snake::Update(const Location & dl) // the guy that calls everything since h
 		GoalsEaten = 1;
 	}
 
-	switch(seg.front().ControltheHead(brd, dl)) // this guy gets some exlusive shit
+	switch(seg.front().ControltheHead(brd, dl)) // this guy gets some exlusive stuff
 	{
 	case Board::Content::Poison:
 		SpeedMeUp = true;
@@ -101,7 +101,7 @@ Board::Content Snake::Segment::ControltheHead(Board & brd, const Location & dl) 
 	case Board::Content::Fruit:
 		ContentUpdate(brd, newLoc, Board::Content::Head);
 		return Board::Content::Fruit;
-		break; //fukin break man
+		break; 
 	case Board::Content::Obstacle:
 		ContentUpdate(brd, newLoc, Board::Content::Head);
 		return Board::Content::Obstacle;

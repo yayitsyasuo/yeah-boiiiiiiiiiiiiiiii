@@ -24,6 +24,10 @@ GameSettings::GameSettings(const std::string& File)
 		{
 			in >> nFruits;
 		}
+		else if (str.find("-INITIAL SPEED") != std::string::npos)
+		{
+			in >> Speed;
+		}
 		else
 		{
 			std::runtime_error("Bad fucking input man");
@@ -34,6 +38,11 @@ GameSettings::GameSettings(const std::string& File)
 int GameSettings::GetnFruits() const
 {
 	return nFruits;
+}
+
+float GameSettings::GetSpeed() const
+{
+	return Speed;
 }
 
 int GameSettings::GetnPoison() const

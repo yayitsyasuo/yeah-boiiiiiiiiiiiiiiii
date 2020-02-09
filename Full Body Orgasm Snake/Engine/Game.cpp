@@ -28,7 +28,8 @@ Game::Game( MainWindow& wnd )
 	brd(gfx, gt),
 	snake({ 5, 3 }, brd),
 	rnd(std::random_device ()()),
-	f(gfx, gt, brd)
+	f(gfx, gt, brd),
+	dtSumLimit(gt.GetSpeed())
 {
 }
 
@@ -95,10 +96,10 @@ void Game::UpdateModel()
 			snake.Update(dloc);
 			if (snake.SpeedMeUp) // cringe method but w/e
 			{
-				dtSumLimit -= 0.0005f;
+				dtSumLimit -= 0.001f;
 				snake.SpeedMeUp = false;
 			}
-			dtSumLimit = dtSumLimit - 0.0002f; // speeding up
+			dtSumLimit = dtSumLimit - 0.0003f; // speeding up
 		}
 	}
 }
@@ -114,4 +115,8 @@ void Game::ComposeFrame()
 	brd.DrawCells(cPoison, Board::Content::Poison);
 	f.DrawAlles();
 	snake.Draw();
+	if (snake.GetGameOver())
+	{
+		sprite.DrawGameOver(350, 100, gfx);
+	}
 }

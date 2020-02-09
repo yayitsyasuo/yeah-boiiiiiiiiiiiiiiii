@@ -30,6 +30,7 @@
 #include <random>
 #include "Frame.h"
 #include "GameSettings.h"
+#include "SpriteCodex.h"
 
 class Game
 {
@@ -65,8 +66,9 @@ private:
 	FrameTimer ft;
 	float dtSum = 0.0f;
 	Richtung r { Richtung::right };
-	float dtSumLimit= 0.15f; 
+	float dtSumLimit; 
 	Color c = Colors::Red;
 	Color cPoison = Colors::MakeRGB(102,0,102);
 	Frame f;
+	SpriteCodex sprite;
 };

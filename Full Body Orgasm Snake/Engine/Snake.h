@@ -6,7 +6,7 @@ class Snake
 {
 public:
 	class Segment {
-		public: // can't initialize constructor when the object is a fucking array		
+		public:	
 			Segment(const Location& locc)
 				:
 				loc(locc)

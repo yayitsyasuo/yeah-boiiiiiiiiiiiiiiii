@@ -9,6 +9,7 @@ public:
 	int GetBoardSizeY() const;
 	int GetnPoison() const;
 	int GetnFruits() const;
+	float GetSpeed() const;
 
 private:
 	std::string str;
@@ -17,5 +18,6 @@ private:
 	int BoardSizeY;
 	int PoisonAmount;
 	int nFruits;
+	float Speed;
 };
 
