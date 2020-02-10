@@ -112,7 +112,7 @@ void Game::SpeedUp()
 
 void Game::ComposeFrame()
 {
-	score.Draw("Score: 012", gfx, Vei2 (500,300));
+	score.Draw(" Score: " + std::to_string(snake.GetScore()), gfx, Vei2 (500,300));
 	brd.DrawCells(c, Board::Content::Fruit);
 	brd.DrawCells(cPoison, Board::Content::Poison);
 	f.DrawAlles();

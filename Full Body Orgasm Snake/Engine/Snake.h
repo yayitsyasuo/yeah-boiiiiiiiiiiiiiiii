@@ -22,6 +22,7 @@ public:
 	};
 public:
 	Snake(const Location& in, Board& brd);
+	int GetScore() const;
 	void Draw();
 	void Update(const Location& dl);
 	bool GetGameOver();
@@ -30,20 +31,20 @@ public:
 private:
 	std::mt19937 rnd;
 	Board& brd;
-	int GoalsEaten = 1;
-	static constexpr int nColourMax = 12;
+	int GoalsEaten = 0;
+	static constexpr int nColourMax = 10;
 	std::vector <Segment> seg;
 	Color c[nColourMax+1]{
-		{204,255,229},{153,255,204},{102,255,178},
-		{51,255,153},{0,255,128},{0,204,102},	
-		{0,153,76},{0,204,102},{0,255,128},
-		{51,255,153},{102,255,178},{153,255,204},
-		{204,255,229}
+		{38, 38, 38},
+		{38, 38, 38},{115, 115, 115},{115, 115, 115},
+		{153, 153, 153},{153, 153, 153},{115, 115, 115},
+		{115, 115, 115},{38, 38, 38},{38, 38, 38}
 	};
 	int nColour=0;
-	Color HeadC = Colors::MakeRGB(255, 255, 0);
+	Color HeadC = Colors::MakeRGB(51, 51, 255);
 	Color ObstacleC = Colors::MakeRGB(128, 128, 128);
 	bool GameOver = false;
 	bool justonce = true;
+	bool inhibit = false;
 };
 

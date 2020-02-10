@@ -11,6 +11,11 @@ Snake::Snake(const Location & in, Board& brd)
 	seg.emplace_back(in);
 }
 
+int Snake::GetScore() const
+{
+	return GoalsEaten;
+}
+
 void Snake::Draw()
 {
 	seg.front().Draw(brd, c[nColour], Board::Content::Snake);
@@ -38,12 +43,11 @@ void Snake::Update(const Location & dl) // the guy that calls everything since h
 	}
 	justonce = false;
 	
-	if (GoalsEaten % 7 == 0 )
+	if (GoalsEaten % 10 == 0 && GoalsEaten != 0 && !inhibit)
 	{
 		brd.SpawnFeature(rnd, Board::Content::Mixture);
-		GoalsEaten = 1;
 	}
-
+	inhibit = true;
 	switch(seg.front().ControltheHead(brd, dl)) // this guy gets some exlusive stuff
 	{
 	case Board::Content::Poison:
@@ -51,6 +55,7 @@ void Snake::Update(const Location & dl) // the guy that calls everything since h
 		break;
 	case Board::Content::Fruit:
 		GoalsEaten++;
+		inhibit = false;
 		if (nColour == nColourMax) // controling the color array
 			nColour = 0;
 		else
