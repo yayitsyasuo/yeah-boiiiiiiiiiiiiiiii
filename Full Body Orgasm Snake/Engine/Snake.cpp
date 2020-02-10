@@ -21,7 +21,7 @@ void Snake::Draw()
 	seg.front().Draw(brd, c[nColour], Board::Content::Snake);
 	seg.front().Draw(brd, ObstacleC ,Board::Content::Obstacle);
 	seg.front().Draw(brd, Colors::Green, Board::Content::Mixture);
-	seg.front().Draw(brd, HeadC, Board::Content::Head);
+	seg.front().Draw(brd, c[nColour], Board::Content::Head);
 }
 
 void Snake::Update(const Location & dl) // the guy that calls everything since he's being called in Game.cpp
@@ -46,6 +46,7 @@ void Snake::Update(const Location & dl) // the guy that calls everything since h
 	if (GoalsEaten % 10 == 0 && GoalsEaten != 0 && !inhibit)
 	{
 		brd.SpawnFeature(rnd, Board::Content::Mixture);
+		nColour++;
 	}
 	inhibit = true;
 	switch(seg.front().ControltheHead(brd, dl)) // this guy gets some exlusive stuff
@@ -56,10 +57,7 @@ void Snake::Update(const Location & dl) // the guy that calls everything since h
 	case Board::Content::Fruit:
 		GoalsEaten++;
 		inhibit = false;
-		if (nColour == nColourMax) // controling the color array
-			nColour = 0;
-		else
-		nColour++;
+
 		seg.emplace_back(seg[seg.size() - 1].GetLoc());
 
 		SpeedMeUp = true; // cringe method

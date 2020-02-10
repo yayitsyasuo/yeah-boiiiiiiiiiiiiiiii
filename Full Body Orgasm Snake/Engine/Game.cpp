@@ -93,29 +93,37 @@ void Game::UpdateModel()
 		dtSum += dt;
 		if (dtSum > dtSumLimit) // dtSum controls the speed
 		{
-			dtSum -= dtSum;
+			dtSum = 0;
 			snake.Update(dloc);
 			if (snake.SpeedMeUp) // cringe method but w/e
 			{
-				dtSumLimit -= 0.001f;
+				dtSumLimit -= 0.0003f;
 				snake.SpeedMeUp = false;
 			}
-			dtSumLimit = dtSumLimit - 0.0003f; // speeding up
+			dtSumLimit = dtSumLimit - 0.0001f; // speeding up
 		}
 	}
 }
 
 void Game::SpeedUp()
 {
-	dtSumLimit -= 0.05f;
+	//fucked up speed up
+	dtSumLimit -= 0.0003f;
 }
 
 void Game::ComposeFrame()
 {
+	for (int x = 0; x < 799; x++)
+	{
+		for (int y = 0; y < 599; y++)
+		{
+			gfx.PutPixel(x,y,Colors::White);
+		}
+	}
 	score.Draw(" Score: " + std::to_string(snake.GetScore()), gfx, Vei2 (500,300));
 	brd.DrawCells(c, Board::Content::Fruit);
-	brd.DrawCells(cPoison, Board::Content::Poison);
-	f.DrawAlles();
+	//brd.DrawCells(cPoison, Board::Content::Poison);
+	//f.DrawAlles();
 	snake.Draw();
 	if (snake.GetGameOver())
 	{

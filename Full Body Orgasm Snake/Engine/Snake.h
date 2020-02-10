@@ -32,16 +32,16 @@ private:
 	std::mt19937 rnd;
 	Board& brd;
 	int GoalsEaten = 0;
-	static constexpr int nColourMax = 10;
+	static constexpr int nColourMax = 4;
 	std::vector <Segment> seg;
 	Color c[nColourMax+1]{
+		{0,0,0},
 		{38, 38, 38},
-		{38, 38, 38},{115, 115, 115},{115, 115, 115},
-		{153, 153, 153},{153, 153, 153},{115, 115, 115},
-		{115, 115, 115},{38, 38, 38},{38, 38, 38}
+		{115, 115, 115},
+		{153, 153, 153}
 	};
 	int nColour=0;
-	Color HeadC = Colors::MakeRGB(51, 51, 255);
+	Color HeadC = Colors::MakeRGB(79, 198, 255);
 	Color ObstacleC = Colors::MakeRGB(128, 128, 128);
 	bool GameOver = false;
 	bool justonce = true;

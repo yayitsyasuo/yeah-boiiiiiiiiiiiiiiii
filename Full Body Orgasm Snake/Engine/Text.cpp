@@ -40,7 +40,7 @@ void Text::Draw(const std::string& display_text, Graphics & gfx, Vei2 pos)
 			}
 		else
 		{
-			gfx.DrawSpriteColorSwap(pos.x, pos.y, letter[index], text, Colors::White, chroma);
+			gfx.DrawSprite(pos.x, pos.y, letter[index], text, chroma);
 			pos.x += FontWidth;
 		}
 	}
