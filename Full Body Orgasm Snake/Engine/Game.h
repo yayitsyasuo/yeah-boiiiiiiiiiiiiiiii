@@ -70,7 +70,7 @@ private:
 	float dtSumLimit; 
 	Color c = Colors::Red;
 	Color cPoison = Colors::MakeRGB(102,0,102);
-	Frame f;
+	//Frame f;
 	SpriteCodex sprite;
 	Text score;
 

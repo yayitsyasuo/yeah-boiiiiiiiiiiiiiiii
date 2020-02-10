@@ -44,6 +44,8 @@ void Board::SpawnFeature(std::mt19937& rnd, const Content content)
 	std::uniform_int_distribution<int> Xdist(1, Columns-1);
 	std::uniform_int_distribution<int> Ydist(1, Rows-1);
 	Location newLoc(Xdist(rnd), Ydist(rnd));
+	assert(newLoc.x >= 0 && newLoc.x <= Columns);
+	assert(newLoc.y >= 0 && newLoc.y <= Rows);
 	
 	while (ContentCheck(newLoc) != Content::Nothing)
 	{

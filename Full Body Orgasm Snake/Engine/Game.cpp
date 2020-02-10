@@ -28,7 +28,7 @@ Game::Game(MainWindow& wnd)
 	brd(gfx, gt),
 	snake({ 5, 3 }, brd),
 	rnd(std::random_device()()),
-	f(gfx, gt, brd),
+	//f(gfx, gt, brd),
 	dtSumLimit(gt.GetSpeed()),
 	score("Images\\Fixedsys16x28.bmp", 32, 3, Colors::White)
 {
