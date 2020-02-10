@@ -31,6 +31,7 @@
 #include "Frame.h"
 #include "GameSettings.h"
 #include "SpriteCodex.h"
+#include "Text.h"
 
 class Game
 {
@@ -71,4 +72,6 @@ private:
 	Color cPoison = Colors::MakeRGB(102,0,102);
 	Frame f;
 	SpriteCodex sprite;
+	Text score;
+
 };

@@ -1,9 +1,11 @@
 #include "Text.h"
 #include <assert.h>
 
-Text::Text(const std::string& file, Color chroma)
+Text::Text(const std::string& file, int nC, int nR, Color chroma)
 	:
 	text(file),
+	nColumns(nC),
+	nRows(nR),
 	FontWidth(text.GetWidth() / nColumns),
 	FontHeight(text.GetHeight() / nRows),
 	chroma(chroma)
@@ -38,8 +40,8 @@ void Text::Draw(const std::string& display_text, Graphics & gfx, Vei2 pos)
 			}
 		else
 		{
-			pos.x += FontWidth;
 			gfx.DrawSpriteColorSwap(pos.x, pos.y, letter[index], text, Colors::White, chroma);
+			pos.x += FontWidth;
 		}
 	}
 }

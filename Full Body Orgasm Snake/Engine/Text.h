@@ -9,14 +9,14 @@
 class Text
 {
 public:
-	Text( const std::string& file, Color chroma);
+	Text( const std::string& file, int nC, int nR, Color chroma);
 	void Draw(const std::string& text, Graphics& gfx, Vei2 pos );//can't redirect a reference == can't change it????
 private:
 	Surface text;
 	std::vector <RectI> letter;
 	Color chroma;
-	static constexpr int nColumns = 32;
-	static constexpr int nRows = 3;
+	int nColumns;
+	int nRows;
 	int FontWidth;
 	int FontHeight;
 };

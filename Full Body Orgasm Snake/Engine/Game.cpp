@@ -21,15 +21,16 @@
 #include "MainWindow.h"
 #include "Game.h"
 
-Game::Game( MainWindow& wnd )
+Game::Game(MainWindow& wnd)
 	:
-	wnd( wnd ),
-	gfx( wnd ),
+	wnd(wnd),
+	gfx(wnd),
 	brd(gfx, gt),
 	snake({ 5, 3 }, brd),
-	rnd(std::random_device ()()),
+	rnd(std::random_device()()),
 	f(gfx, gt, brd),
-	dtSumLimit(gt.GetSpeed())
+	dtSumLimit(gt.GetSpeed()),
+	score("Images\\Fixedsys16x28.bmp", 32, 3, Colors::White)
 {
 }
 
@@ -111,6 +112,7 @@ void Game::SpeedUp()
 
 void Game::ComposeFrame()
 {
+	score.Draw("Score: 012", gfx, Vei2 (500,300));
 	brd.DrawCells(c, Board::Content::Fruit);
 	brd.DrawCells(cPoison, Board::Content::Poison);
 	f.DrawAlles();
