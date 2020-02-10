@@ -19,11 +19,14 @@
 *	along with The Chili DirectX Framework.  If not, see <http://www.gnu.org/licenses/>.  *
 ******************************************************************************************/
 #pragma once
+#include "ChiliWin.h"
 #include <d3d11.h>
 #include <wrl.h>
 #include "ChiliException.h"
 #include "Colors.h"
-#include "Location.h"
+#include "Surface.h"
+#include "Rect.h"
+#include <assert.h>
 
 class Graphics
 {
@@ -57,18 +60,48 @@ public:
 		PutPixel( x,y,{ unsigned char( r ),unsigned char( g ),unsigned char( b ) } );
 	}
 	void PutPixel( int x,int y,Color c );
-	void DrawRect( int x0,int y0,int x1,int y1,Color c );
-	void DrawRectDim( int x0,int y0,int width,int height,Color c )
+	Color GetPixel( const int x , const int y);
+	void DrawSpriteKeinChroma(const int x, const int y, const Surface& surf)
 	{
-		DrawRect( x0,y0,x0 + width,y0 + height,c );
+		DrawSpriteKeinChroma( x, y, surf.GetRect() , surf );
+	}
+	void DrawSpriteKeinChroma(const int x, const int y, const RectI& source, const Surface& surf)
+	{
+		DrawSpriteKeinChroma(x,y,source, GetScreenClip(), surf);
+	}
+	void DrawSpriteKeinChroma(const int x, const int y, RectI source, const RectI& clip, const Surface& surf);
+	void DrawSprite(int x, int y, RectI source, const RectI & clip, const Surface& surf, Color chroma = Colors::Magenta);
+	void DrawSprite(int x, int y, RectI source, const Surface& surf, Color chroma = Colors::Magenta)
+	{
+		DrawSprite(x,y,source, GetScreenClip(), surf, chroma);
+	}
+	void DrawSpriteColorSwap(int x, int y, RectI source, const RectI & clip, const Surface& surf, Color swap_to, Color chroma);
+	void DrawSpriteColorSwap(int x, int y, RectI source, const Surface& surf, Color swap_to, Color chroma)
+	{
+		DrawSpriteColorSwap(x, y, source, GetScreenClip(), surf, swap_to, chroma);
+	}
+	void DrawSpriteGhost(int x, int y, RectI source, const RectI& clip, const Surface& surf, Color chroma);
+	void DrawSpriteGhost(int x, int y, RectI source, const Surface& surf, Color chroma)
+	{
+		DrawSpriteGhost(x, y, source, GetScreenClip(), surf, chroma);
+	}
+	void DrawSpriteGhost(int x, int y, const Surface& surf, Color chroma)
+	{
+		DrawSpriteGhost(x, y, RectI ( 0, surf.GetWidth(), 0, surf.GetHeight() ) , GetScreenClip(), surf, chroma);
+	}
+	RectI GetScreenClip() const;
+	void DrawRect(int x0, int y0, int x1, int y1, Color c);
+	void DrawRectDim(int x0, int y0, int width, int height, Color c)
+	{
+		DrawRect(x0, y0, x0 + width, y0 + height, c);
 	}
 	void DrawCell(int x, int y, Color c, int dimension)
 	{
-		int xx = (x+1) * dimension;  // +1 is shifting the grid to the right
-		int yy = (y+1) * dimension;
-		DrawRectDim(xx -1 - dimension,
-			yy -1 ,
-			dimension -1 , dimension -1, c); //that -1 is padding
+		int xx = (x + 1) * dimension;  // +1 is shifting the grid to the right
+		int yy = (y + 1) * dimension;
+		DrawRectDim(xx - 1 - dimension,
+			yy - 1,
+			dimension - 1, dimension - 1, c); //that -1 is padding
 	}
 	~Graphics();
 private:

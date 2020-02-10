@@ -240,6 +240,183 @@ Graphics::Graphics( HWNDKey& key )
 		_aligned_malloc( sizeof( Color ) * Graphics::ScreenWidth * Graphics::ScreenHeight,16u ) );
 }
 
+void Graphics::DrawSpriteKeinChroma(int x, int y, RectI source, const RectI & clip, const Surface & surf)
+{
+	// RectI source determines position on the bitmap
+	assert(source.left >= 0);
+	assert(source.right < surf.GetWidth());
+	assert(source.top >= 0);
+	assert(source.bottom <= surf.GetHeight());
+
+	if (x < clip.left)
+	{
+		source.left += clip.left - x;
+		x = clip.left;
+	}
+	else if (x + source.GetWidth() > clip.right)
+	{
+		source.right -= source.GetWidth() - (clip.right - x);
+	}
+	if (y < clip.top)
+	{
+		source.top += clip.top - y;
+		y = clip.top;
+	}
+	else if ( y + source.GetHeight() > clip.bottom )
+	{
+		source.bottom -= source.GetHeight() - ( clip.bottom - y);
+	}
+
+	for (int xx = source.left; xx < source.right; xx++)
+	{
+		for (int yy = source.top; yy < source.bottom; yy++)
+
+			PutPixel(x + xx - source.left, y + yy - source.top, surf.GetPixelC(xx, yy));
+			// the boi - surf.GetPixelC(xx, yy)
+	}
+	
+}
+
+void Graphics::DrawSprite(int x, int y, RectI source, const RectI & clip, const Surface & surf, Color chroma)
+{
+	// RectI source determines position on the bitmap
+	assert(source.left >= 0);
+	assert(source.right <= surf.GetWidth());
+	assert(source.top >= 0);
+	assert(source.bottom <= surf.GetHeight());
+
+	if (x < clip.left)
+	{
+		source.left += clip.left - x;
+		x = clip.left;
+	}
+	else if (x + source.GetWidth() > clip.right)
+	{
+		source.right -= source.GetWidth() - (clip.right - x);
+	}
+	if (y < clip.top)
+	{
+		source.top += clip.top - y;
+		y = clip.top;
+	}
+	else if (y + source.GetHeight() > clip.bottom)
+	{
+		source.bottom -= source.GetHeight() - (clip.bottom - y);
+	}
+
+	for (int xx = source.left; xx < source.right; xx++)
+	{
+		for (int yy = source.top; yy < source.bottom; yy++)
+			if(surf.GetPixelC(xx, yy) != chroma)
+			PutPixel(x + xx - source.left, y + yy - source.top, surf.GetPixelC(xx, yy));
+		// the boi - surf.GetPixelC(xx, yy)
+	}
+}
+
+void Graphics::DrawSpriteColorSwap(int x, int y, RectI source, const RectI & clip,const Surface & surf, Color swap_to, Color chroma)
+{
+	assert(source.left >= 0);
+	assert(source.right <= surf.GetWidth());
+	assert(source.top >= 0);
+	assert(source.bottom <= surf.GetHeight());
+
+	if (x < clip.left)
+	{
+		source.left += clip.left - x;
+		x = clip.left;
+	}
+	else if (x + source.GetWidth() > clip.right)
+	{
+		source.right -= source.GetWidth() - (clip.right - x);
+	}
+	if (y < clip.top)
+	{
+		source.top += clip.top - y;
+		y = clip.top;
+	}
+	else if (y + source.GetHeight() > clip.bottom)
+	{
+		source.bottom -= source.GetHeight() - (clip.bottom - y);
+	}
+
+	for (int xx = source.left; xx < source.right; xx++)
+	{
+		for (int yy = source.top; yy < source.bottom; yy++)
+			if (surf.GetPixelC(xx, yy) != chroma)
+				PutPixel(x + xx - source.left, y + yy - source.top, surf.GetPixelC_swapped(xx, yy, chroma, swap_to));
+		// the boi - surf.GetPixelC(xx, yy)
+	}
+}
+
+void Graphics::DrawSpriteGhost(int x, int y, RectI source, const RectI & clip, const Surface & surf, Color chroma)
+{
+	assert(source.left >= 0);
+	assert(source.right <= surf.GetWidth());
+	assert(source.top >= 0);
+	assert(source.bottom <= surf.GetHeight());
+
+	if (x < clip.left)
+	{
+		source.left += clip.left - x;
+		x = clip.left;
+	}
+	else if (x + source.GetWidth() > clip.right)
+	{
+		source.right -= source.GetWidth() - (clip.right - x);
+	}
+	if (y < clip.top)
+	{
+		source.top += clip.top - y;
+		y = clip.top;
+	}
+	else if (y + source.GetHeight() > clip.bottom)
+	{
+		source.bottom -= source.GetHeight() - (clip.bottom - y);
+	}
+
+	for (int xx = source.left; xx < source.right; xx++)
+	{
+		for (int yy = source.top; yy < source.bottom; yy++)
+		{
+			if (surf.GetPixelC(xx, yy) != chroma)
+			{
+				const int ActualX = x + xx - source.left;
+				const int ActualY = y + yy - source.top;
+				Color CGhost{ unsigned char( (GetPixel(ActualX,ActualY).GetR() + surf.GetPixelC(xx,yy).GetR()) / 2),
+				unsigned char((GetPixel(ActualX,ActualY).GetG() + surf.GetPixelC(xx,yy).GetG()) / 2),
+				unsigned char((GetPixel(ActualX,ActualY).GetB() + surf.GetPixelC(xx,yy).GetB()) / 2)
+				};
+				PutPixel(ActualX, ActualY, CGhost);
+			}
+		}
+	}
+}
+
+RectI Graphics::GetScreenClip() const
+{
+	return RectI(0 , ScreenWidth, 0 , ScreenHeight);
+}
+
+void Graphics::DrawRect(int x0, int y0, int x1, int y1, Color c)
+{
+	if (x0 > x1)
+	{
+		std::swap(x0, x1);
+	}
+	if (y0 > y1)
+	{
+		std::swap(y0, y1);
+	}
+
+	for (int y = y0; y < y1; ++y)
+	{
+		for (int x = x0; x < x1; ++x)
+		{
+			PutPixel(x, y, c);
+		}
+	}
+}
+
 
 Graphics::~Graphics()
 {
@@ -317,26 +494,14 @@ void Graphics::PutPixel( int x,int y,Color c )
 	pSysBuffer[Graphics::ScreenWidth * y + x] = c;
 }
 
-void Graphics::DrawRect( int x0,int y0,int x1,int y1,Color c )
+Color Graphics::GetPixel(const int x, const int y)
 {
-	if( x0 > x1 )
-	{
-		std::swap( x0,x1 );
-	}
-	if( y0 > y1 )
-	{
-		std::swap( y0,y1 );
-	}
-
-	for( int y = y0; y < y1; ++y )
-	{
-		for( int x = x0; x < x1; ++x )
-		{
-			PutPixel( x,y,c );
-		}
-	}
+	assert(x >= 0);
+	assert(x < int(Graphics::ScreenWidth));
+	assert(y >= 0);
+	assert(y < int(Graphics::ScreenHeight));
+	return pSysBuffer[Graphics::ScreenWidth * y + x];
 }
-
 
 //////////////////////////////////////////////////
 //           Graphics Exception
